@@ -1,0 +1,364 @@
+---
+sidebar_position: 9
+title: PDI (`/app/pdi`)
+description: "Plano de Desenvolvimento Individual — /app/pdi: metas SMART, cobertura por competência, Check de Evolução, avaliação 360° e mapeamento de skills no protótipo."
+---
+
+# Plano de desenvolvimento individual (`/app/pdi`)
+
+<AnaliseProduto>
+
+### Finalidade
+
+O **PDI** centraliza **metas de desenvolvimento**, **avaliação de competências** (auto, *manager*, 360°) e **vínculo explícito** entre gaps e pilares do [framework](./skills/matriz).
+
+A rota `/app/pdi` (entrada pelo menu) funciona como painel operacional: resumo de metas, cobertura estratégica (gaps ↔ pilares), Check de Evolução embutido, histórico trimestral e lista filtrável de metas SMART.
+
+O separador **PDI** em `/app/perfil` usa o mesmo modelo de dados e pode expor atalhos como **Editar PDI Completo** e as subáreas de **Avaliação** descritas nesta página.
+
+### Rastreabilidade
+
+| Origem | Relação |
+|--------|---------|
+| [Gaps](./skills/gaps) | Lacunas convertidas em metas SMART |
+| [Jornada](./perfil-jornada) | Checks de evolução e histórico cruzam com o bloco Check de Evolução em `/app/pdi` |
+| [Soft Skills](./skills/soft) | Pilares como "Comunicação & Influência" aparecem nas metas |
+| [Hard Skills](./skills/hard) | Mapeamento Skills → Framework consome níveis técnicos |
+
+### Regras de privacidade
+
+- **Comentários da Autoavaliação:** visíveis apenas para colaborador e manager — incentivam reflexão honesta sem expor notas ao grupo 360°.
+- **Comentários 360°:** anônimos (5 avaliadores); o número de respondentes por competência pode variar conforme relevância.
+- **Feedback Manager:** o colaborador consome nota e texto do líder por competência — distinto da média 360°.
+
+### Limitações do protótipo
+
+Scores, datas e percentagens são dados de demonstração. O fluxo formal de calibragem entre manager e RH não está descrito aqui. O comportamento de **Editar Avaliações** (persistência, *draft* vs publicado) não está definido.
+
+**Acessibilidade:** no tema escuro, as linhas não selecionadas do *dropdown* de gap podem ficar com contraste insuficiente — falha de CSS no `SelectContent`, não de lógica. Se, após **Criar Meta**, o vínculo ao gap não persistir, tratar como defeito de integração.
+
+</AnaliseProduto>
+
+<ReferenciaProtótipo>
+
+## Rota `/app/pdi` — painel operacional
+
+### Cabeçalho
+
+| Elemento | Texto (protótipo) |
+|----------|-------------------|
+| Rótulo | **PDI** |
+| Título | **Plano de Desenvolvimento Individual** |
+| Apoio 1 | Metas SMART para acelerar seu crescimento profissional na Hunter |
+| Apoio 2 | Desenvolvimento de habilidades técnicas e comportamentais focado na sua carreira a médio/longo prazo |
+
+| Contexto | Ação principal |
+|----------|----------------|
+| `/app/pdi` | **Nova Meta SMART** |
+| `/app/perfil` · separador PDI | **Editar PDI Completo** · **Nova Meta** |
+
+---
+
+### Resumo de metas
+
+| Métrica | Valor (mock) |
+|---------|--------------|
+| Metas totais | 6 |
+| Concluídas | 0 |
+| Em andamento | 6 |
+| Progresso médio | **58%** |
+
+---
+
+### Cobertura estratégica por competência
+
+*Suas metas PDI estão alinhadas com o framework de competências e cobrem os gaps identificados.*
+
+| Indicador | Valor (mock) |
+|-----------|--------------|
+| Metas PDI ativas | 6 |
+| Gaps totais | 13 |
+| Cobertura geral | **23%** |
+
+| Pilar | Metas ativas | Gaps | Sem PDI | Cobertura |
+|-------|-------------|------|---------|-----------|
+| Design de Soluções | 2 | 4 | 2 | 50% |
+| Estratégia Técnica | 1 | 4 | 3 | 25% |
+| Arquitetura Frontend | 0 | 2 | 2 | 0% |
+| Performance & Otimização | 0 | 1 | 1 | 0% |
+
+**Callout:** você tem **10** gaps sem plano de desenvolvimento. Criar metas PDI para esses gaps acelera a progressão para L6. → **Criar Nova Meta PDI**
+
+---
+
+### Nova Meta SMART
+
+Abre como modal ou painel lateral a partir de **Nova Meta SMART** ou **Criar Meta** nos cartões de cobertura.
+
+| Elemento | Texto / comportamento |
+|----------|-----------------------|
+| Título | **Nova Meta SMART** |
+| Subtítulo | Defina uma meta clara, mensurável e vinculada ao seu PDI seguindo a metodologia SMART |
+| Assistente SMART | Acordeão Mostrar / Ocultar · letras S · M · A · R · T |
+
+#### Campos principais
+
+| Campo | Notas |
+|-------|-------|
+| **Vincular a Gap (opcional)** | Select com "Nenhum (meta independente)" e opções *Skill (origem → destino) (pilar)*. Ao selecionar gap válido, o mock mostra confirmação verde. Ver [Gaps](./skills/gaps). |
+| **Título da Meta** *(obrig.)* | Ex: *Dominar RxJS e Programação Reativa* |
+| **Pilar do Framework** *(obrig.)* | Itens com cor por pilar: Design de Soluções · Estratégia Técnica · Comunicação & Influência · Trabalho em Equipe · Resolução de Conflitos |
+| **Prioridade** | Alta / Média / Baixa (*pills* coloridas) |
+| **Data Limite** *(obrig.)* | *Date picker* |
+| **Descrição Geral** *(obrig.)* | Descreva sua meta de forma clara e objetiva… |
+
+#### Critérios SMART
+
+| Letra | Foco | Pergunta (protótipo) |
+|-------|------|---------------------|
+| **S** · Específico | O quê | *O que exatamente você quer alcançar?* |
+| **M** · Mensurável | Medição | *Como você vai medir o progresso?* |
+| **A** · Alcançável | Passos | *Quais passos você vai seguir?* |
+| **R** · Relevante | Porquê | *Por que essa meta é importante?* |
+| **T** · Temporal | Marcos | *Quais são os marcos intermediários?* |
+
+| Ação | Rótulo |
+|------|--------|
+| Secundária | **Cancelar** |
+| Primária | **Criar Meta** |
+
+---
+
+### Editar PDI completo
+
+Fluxo dedicado ao **plano estruturado** (objetivo de carreira, planos de ação, fases) — distinto da lista operacional de metas SMART. Acesso via **Editar PDI Completo** em `/app/perfil` · separador PDI. *Breadcrumb:* Carreira › Plano de Desenvolvimento.
+
+| Bloco | Conteúdo (mock) |
+|-------|-----------------|
+| **Objetivo de Carreira** | Texto editável — ex: *Evoluir para Senior Product Owner focado em produtos de IA e automação* |
+| **Planos de Ação** | Lista com título, descrição, estado, prazo e barra de progresso |
+| **Etapas (fases)** | Fase 1: Fundamentos (Q1 2026) · Fase 2: Aplicação Prática (Q2–Q3 2026) |
+
+**Exemplos de planos de ação:**
+
+| Título | Estado | Prazo | Progresso |
+|--------|--------|-------|-----------|
+| Certificação em Product Management (PSPO II) | Em Andamento | 30/06/2026 | 40% |
+| Mentoria com Senior PM (sessões quinzenais) | Não Iniciado | 30/09/2026 | 0% |
+
+:::tip Nova Meta SMART vs editor completo
+
+**Nova Meta SMART** alinha metas com critérios SMART, gaps e cobertura por pilar. **Editar PDI Completo** agrega objetivo de carreira, planos de ação com prazo e fases — modelos complementares, não substitutos.
+
+:::
+
+---
+
+### Lista de metas
+
+| Filtro | Opções |
+|--------|--------|
+| **Pilar** | Todos os Pilares / Design de Soluções / Estratégia Técnica / Comunicação & Influência / Trabalho em Equipe / Resolução de Conflitos |
+| **Estado** | Todos os Status |
+
+**6 metas encontradas.** Cada cartão mostra: título, pilar (*badge* colorido), prioridade, estado, *tag* de gap, barra de progresso, prazo, data de criação e acordeão **Ver Detalhamento SMART**.
+
+| Meta | Pilar | Prioridade | Estado | Gap vinculado | Progresso | Prazo |
+|------|-------|------------|--------|---------------|-----------|-------|
+| Dominar RxJS para programação reativa | Design de Soluções | Alta | Em andamento | RxJS & Programação Reativa | 65% | 15/05/2026 |
+| Liderar apresentação técnica para C-level | Comunicação & Influência | Alta | Em andamento | — | 80% | 30/04/2026 |
+| Mentorar 2 engenheiros júnior | Trabalho em Equipe | Média | Em andamento | — | 35% | 30/06/2026 |
+| Certificação AWS Solutions Architect | Estratégia Técnica | Média | Em andamento | Arquitetura Cloud AWS | 20% | 15/07/2026 |
+| Mediar conflito técnico entre squads | Resolução de Conflitos | Alta | **Atrasada** | — | 90% | 15/04/2026 |
+| Implementar OAuth 2.1 no Authentication Service | Design de Soluções | Alta | **Atrasada** | Security & OAuth | 60% | 10/03/2026 |
+
+#### Detalhamento SMART — Dominar RxJS
+
+| Letra | Critério (copy do protótipo) |
+|-------|------------------------------|
+| **S** | Implementar **3** features complexas usando RxJS operators avançados (*switchMap*, *concatMap*, *exhaustMap*). |
+| **M** | Code review positivo de **2** seniors + redução de **40%** nos bugs relacionados a async. |
+| **A** | 1) Curso Advanced RxJS; 2) Refatorar módulo de notificações; 3) Criar operators customizados; 4) Documentar patterns. |
+| **R** | A arquitetura frontend é **80%** reativa. Dominar RxJS impacta diretamente qualidade e performance do produto. |
+| **T** | Semanas 1–2: Curso | Semanas 3–4: Refatoração | Semanas 5–6: Operators customizados | Semanas 7–8: Documentação. |
+
+---
+
+### Check de Evolução
+
+Autoavaliação estruturada e periódica com **5 pilares** de desenvolvimento profissional. Cadência recomendada: trimestral (20–30 min).
+
+**Pilares avaliados:**
+
+| Pilar | Descrição |
+|-------|-----------|
+| Performance | Entrega de resultados e qualidade técnica |
+| Skills & Competências | Hard skills e soft skills técnicas |
+| Fit Cultural | Alinhamento com valores e cultura da empresa |
+| Nível de Potencialidade | Capacidade de crescimento e evolução |
+| Competências Gerais | Competências transversais e liderança |
+
+:::note Variações de nomenclatura
+
+No modal de introdução: *Performance*, *Skills & Competências*, *Fit Cultural*. No overlay Check Point em curso: *Desempenho*, *Skills*, *PE Cultural*. São variantes de copy no protótipo, não pilares distintos.
+
+:::
+
+#### Check atual — Q1 2026
+
+| Campo | Valor (mock) |
+|-------|--------------|
+| Estado | Em andamento |
+| Início | 6 mar. 2026 |
+| Prazo | 20 mar. 2026 |
+| Progresso | **40%** |
+| Pilares concluídos | 2/5 |
+
+| Respondente | Estado |
+|-------------|--------|
+| Você (autoavaliação) | Concluído |
+| Gestor: Rafael Mendes | Pendente |
+| Peer: Ana Costa | Concluído |
+| Peer: Carlos Silva | Pendente |
+
+| Pilar | Questões | Score |
+|-------|----------|-------|
+| Desempenho | 8/8 | **4.3** |
+| Skills | 6/6 | **4.1** |
+| PE Cultural | 0/5 | — |
+| Nível de potencialidade | 0/7 | — |
+| Competências Gerais | 0/6 | — |
+
+**Ação:** **Continuar Check**
+
+#### Histórico de checks
+
+| Ciclo | Estado | Score | Conclusão | Pilares | Peers |
+|-------|--------|-------|-----------|---------|-------|
+| Q4 2025 | Concluído | **4.3** | 14 dez. 2025 | 5/5 | 5/5 |
+| Q3 2025 | Concluído | **4.1** | 13 set. 2025 | 5/5 | 5/5 |
+| Q2 2025 | Concluído | **3.9** | 10 jun. 2025 | 5/5 | 4/5 |
+| Q4 2024 | Concluído | **3.7** | 5 dez. 2024 | 5/5 | 5/5 |
+
+Ao clicar **Consultar** num ciclo concluído, abre overlay com score geral e pilares avaliados. A dica no modal indica comparar histórico na [Jornada](./perfil-jornada).
+
+---
+
+## Avaliação 360°
+
+Compare sua autoavaliação com a percepção do manager e do time. Identifique blind spots e hidden strengths para orientar o PDI.
+
+### Resumo de médias
+
+| Fonte | Valor | Nota |
+|-------|-------|------|
+| Sua autoavaliação | **3.7** | Média geral |
+| Avaliação manager | **4.1** | Média geral |
+| Avaliação 360° time | **4.2** | 5 avaliadores |
+| Alinhamento | **4/7** | Competências alinhadas |
+
+### Blind spots
+
+Competências onde você se autoavaliou abaixo da percepção dos outros.
+
+| Competência | Você | Time |
+|-------------|------|------|
+| Estratégia Técnica | 3.5 | 4.2 |
+| Mentoria & Liderança | 3.5 | 4.8 |
+
+### Hidden strengths
+
+Competências onde o manager avalia acima da sua autoavaliação.
+
+| Competência | Você | Manager |
+|-------------|------|---------|
+| Mentoria & Liderança | 3.5 | 4.5 |
+
+### Tabs da avaliação
+
+| Tab | Função |
+|-----|--------|
+| **Visão Geral** | Médias, blind spots, hidden strengths, radar comparativo e tabela detalhada |
+| **Autoavaliação** | Nota por competência (escala /5.0) e comentários privativos (colaborador + manager) |
+| **Manager** | Avaliação do líder direto por competência; alimenta comparativo e insights |
+| **360° Time** | Média por competência, contagem de avaliadores e comentários anônimos |
+
+### Autoavaliação por competência
+
+| Competência | Avaliação | Comentário |
+|-------------|-----------|------------|
+| Design de Soluções | **4**/5.0 | Melhorei na análise de trade-offs, mas ainda preciso aprimorar decisões de arquitetura distribuída |
+| Estratégia Técnica | **3.5**/5.0 | Ainda me sinto inseguro ao definir roadmap técnico de longo prazo |
+| Arquitetura Frontend | **4.5**/5.0 | Área de conforto; confiante em decisões de arquitetura React |
+| Performance & Otimização | **3.8**/5.0 | Bom em identificar gargalos, mas posso melhorar em otimizações complexas |
+| Mentoria & Liderança | **3.5**/5.0 | Gosto de ajudar, mas poderia ser mais proativo |
+| Colaboração Cross-team | **3.5**/5.0 | Preciso me expor mais fora do time imediato |
+| Inovação & Evangelização | **3.2**/5.0 | Área que mais preciso desenvolver. Quero fazer mais tech talks. |
+
+### Avaliação Manager
+
+| Competência | Nota | Feedback |
+|-------------|------|----------|
+| Design de Soluções | **4.5**/5.0 | Excelente evolução em design patterns. Continue investindo em arquitetura de sistemas distribuídos. |
+| Estratégia Técnica | **4**/5.0 | Sua visão estratégica está acima do que você percebe. Confie mais nas suas análises. |
+| Arquitetura Frontend | **4.5**/5.0 | Referência do time. Continue evangelizando as melhores práticas. |
+| Performance & Otimização | **4**/5.0 | Ótimo trabalho no último projeto. Continue estudando Web Vitals. |
+| Mentoria & Liderança | **4.5**/5.0 · ↑ Blind spot | Você é uma referência de mentoria para o time. Seus mentorados evoluíram muito. |
+| Colaboração Cross-team | **3.8**/5.0 | Busque mais oportunidades cross-team. Você tem potencial. |
+| Inovação & Evangelização | **3.5**/5.0 | Gap importante para L6. Planeje uma tech talk sobre arquitetura React para Q2. |
+
+### Avaliação 360° Time
+
+Avaliação anônima de **5** colegas. Comentários são anônimos para garantir sinceridade.
+
+| Competência | Média | Avaliadores | Comentários anônimos (seleção) |
+|-------------|-------|-------------|-------------------------------|
+| Design de Soluções | **4.3**/5.0 | 5 | Sempre traz soluções bem pensadas nas reviews |
+| Estratégia Técnica | **4.2**/5.0 | 5 | Sempre pensa no futuro do produto, não só no sprint atual |
+| Arquitetura Frontend | **4.7**/5.0 | 5 | Melhor pessoa para consultar sobre arquitetura React |
+| Performance & Otimização | **3.9**/5.0 | 5 | Sempre atento a performance nas PRs |
+| Mentoria & Liderança | **4.8**/5.0 | 5 | Melhor mentor que já tive; explica muito bem; aprendo no pair programming |
+| Colaboração Cross-team | **4**/5.0 | 3 | Trabalhou bem no projeto de integração com Backend |
+| Inovação & Evangelização | **3.7**/5.0 | 5 | Poderia fazer mais apresentações |
+
+### Comparativo detalhado
+
+| Competência | Você | Manager | 360° Time | Gap vs L5 |
+|-------------|------|---------|-----------|-----------|
+| Design de Soluções | 4 | 4.5 | 4.3 | +0.3 |
+| Estratégia Técnica | 3.5 | 4 | 4.2 | −0.1 |
+| Arquitetura Frontend | 4.5 | 4.5 | 4.7 | +0.6 |
+| Performance & Otimização | 3.8 | 4 | 3.9 | −0.1 |
+| Mentoria & Liderança | 3.5 | 4.5 | 4.8 | +0.3 |
+| Colaboração Cross-team | 3.5 | 3.8 | 4 | −0.2 |
+| Inovação & Evangelização | 3.2 | 3.5 | 3.7 | −0.5 |
+
+*Eixos do radar (protótipo):* as 7 competências acima, escala 0–5, séries Auto / Manager / 360° Time / Esperado L5.
+
+---
+
+## Mapeamento Skills → framework
+
+Como skills técnicas alimentam as competências do framework de carreira.
+
+| Competência | Score médio | Peso no cálculo | Categorias contributivas (exemplos) |
+|-------------|-------------|-----------------|--------------------------------------|
+| Design de Soluções | **85** | 30% | Código, arquitetura e padrões frontend · React (*Referência*), TypeScript (*Sólido*), State Management (*Referência*) |
+| Estratégia Técnica | **75** | 25% | Performance & qualidade · Web Vitals, Code Splitting, Bundle Optimization |
+| Arquitetura Frontend | **80** | 30% | Código + padrões; Ferramental e ambiente · Git (*Referência*), assincronismo/RxJS (*Desenvolvendo*) |
+| Performance & Otimização | **75** | 15% | Performance & qualidade (mesmas categorias de Estratégia Técnica) |
+
+---
+
+## Ações e atividades
+
+| Atividade | Data / cadência | Responsáveis | Pilar | Estado |
+|-----------|-----------------|--------------|-------|--------|
+| Concluir curso Advanced React Performance Patterns | 2026-03-15 | Eu | Estratégia Técnica | Em andamento |
+| Escrever RFC de migração para Micro Frontends | 2026-03-12 | Eu + Rafael Mendes | Design de Soluções | Em andamento |
+| 1:1 com EM — review de carreira e gap analysis L5 → L6 | 2026-03-07 | Rafael Mendes | — | Agendado |
+| Tech Talk: Otimização de performance frontend | 2026-03-20 | Eu | Estratégia Técnica | Agendado |
+| Pair programming com Lucas (L3) — mentoria React avançado | Quarta 14h (recorrente) | Eu | Design de Soluções | Recorrente |
+| Implementar suíte de testes E2E com Cypress | 2026-03-28 | Eu | Qualidade e testes | Planejado |
+
+</ReferenciaProtótipo>

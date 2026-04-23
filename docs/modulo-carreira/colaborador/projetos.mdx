@@ -1,0 +1,104 @@
+---
+sidebar_position: 4
+title: Projetos (`/app/projetos`)
+description: "Lista de projetos do colaborador, filtros, métricas e cartões — rota /app/projetos no protótipo."
+---
+
+# Projetos (`/app/projetos`)
+
+<AnaliseProduto>
+
+### Finalidade
+
+A rota **`/app/projetos`** oferece **visão transversal de iniciativas** em que o colaborador participa: estado (*ativo*, *planejamento*, *concluído*), **dedicação**, **papel**, **stack**, **progresso** e **equipa**. Complementa o separador [Experiência](./perfil-experiencia) no perfil — onde os mesmos projetos podem aparecer **em narrativa de cargo** — mas optimiza-se aqui para **gestão e filtragem** («gerir e acompanhar»).
+
+### Rastreabilidade
+
+| Destino | Relação |
+|---------|---------|
+| [Experiência](./perfil-experiencia) | Projetos espelham ou reutilizam *copy* dos mesmos nomes citados na experiência (*Talent Platform*, *Financial Dashboard*, *redesenho e-commerce*) |
+| [Dashboard](./dashboard) | Cartões de alocação e iniciativas citam contexto que esta página expande |
+| OKRs / [Visão geral](./perfil-visao-geral) | Produto ou plataforma nos projetos alimenta narrativa de impacto |
+
+### Limitações do protótipo
+
+Contagens agregadas (**Total de projetos**, **Total de Pessoas**) e barras de progresso são **dados de demonstração**. Fluxo **Novo Projeto** não está especificado nesta página.
+
+</AnaliseProduto>
+
+<ReferenciaProtótipo>
+
+### Cabeçalho
+
+| Elemento | Texto (protótipo) |
+|----------|---------------------|
+| Título | **Projetos** |
+| Subtítulo | Gerencie seus projetos e acompanhe o progresso |
+| Ação primária | **Novo Projeto** |
+
+### Indicadores resumo
+
+| Métrica | Valor (mock) |
+|---------|----------------|
+| **Total de projetos** | **3** |
+| **Ativos** | **1** |
+| **Em planejamento** | **1** |
+| **Total de pessoas** | **8** *(pessoas **únicas** no *mock*; as listas por cartão somam mais *headcount* por reutilização de nomes)* |
+
+### Pesquisa e filtros
+
+| Elemento | Comportamento (*copy*) |
+|----------|-------------------------|
+| Pesquisa | **Buscar projetos…** (*placeholder*) |
+| **Estado** | **Todos** · **Ativos** · **Concluídos** · **Planejamento** |
+
+---
+
+### Inventário por cartão *(mock)*
+
+#### Talent Platform
+
+| Campo | Valor |
+|-------|--------|
+| **Estado** | **Ativo** |
+| **Descrição** | Plataforma de gestão de talentos e desenvolvimento de carreira para empresas *tech* |
+| **Cliente** | 3 Pontos Interno |
+| **Squad** | Squad Plataforma |
+| **Sua role** | Tech Lead Frontend |
+| **Dedicação** | **160** h/mês |
+| **Stack** | React · TypeScript · Tailwind CSS · React Query · Vite |
+| **Progresso** | **75%** |
+| **Período** | Abr 2024 – Atual |
+| **Time** | Marcelo Machado · Ana Silva · Carlos Santos · Juliana Costa · Pedro Lima (**5** pessoas) |
+
+#### Financial Dashboard
+
+| Campo | Valor |
+|-------|--------|
+| **Estado** | **Concluído** |
+| **Descrição** | *Dashboard* financeiro em tempo real com visualizações interativas e análise de dados |
+| **Cliente** | FinTech Corp |
+| **Squad** | Squad Frontend |
+| **Sua role** | Senior Frontend Developer |
+| **Dedicação** | **160** h/mês |
+| **Stack** | React · TypeScript · D3.js · Recharts · WebSocket |
+| **Progresso** | **100%** |
+| **Período** | Jun 2024 – Out 2024 |
+| **Time** | Marcelo Machado · Roberto Alves · Marina Souza (**3** pessoas) |
+
+#### Redesenho e-commerce
+
+| Campo | Valor |
+|-------|--------|
+| **Estado** | **Planejamento** |
+| **Descrição** | Modernização de plataforma *e-commerce* com foco em performance e Core Web Vitals |
+| **Cliente** | TechStore SA |
+| **Squad** | Squad UX & Frontend |
+| **Sua role** | Tech Lead Frontend |
+| **Dedicação** | **80** h/mês |
+| **Stack** | Next.js 15 · React Server Components · TypeScript · TailwindCSS |
+| **Progresso** | **15%** |
+| **Período** | Mar 2026 – Atual |
+| **Time** | Marcelo Machado · Fernanda Lima (**2** pessoas) |
+
+</ReferenciaProtótipo>

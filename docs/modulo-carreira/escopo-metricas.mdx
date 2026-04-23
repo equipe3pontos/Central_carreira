@@ -1,0 +1,150 @@
+---
+sidebar_position: 4
+title: Escopo e métricas
+description: "Escopo documentado, fora de escopo, North Star candidata, métricas de entrada e instrumentação mínima do Módulo de Carreira."
+---
+
+# Escopo e métricas
+
+> O que está documentado, o que fica fora por enquanto e como medir se o Módulo Colaborador (`/app`) entrega valor. Métricas de RH (`/hr`) ficam como referência futura — não são compromisso desta fase.
+
+---
+
+## Escopo documentado
+
+| Área | Inclui | Não inclui ainda |
+|------|--------|------------------|
+| **Produto** | Problema, proposta de valor, trilha Colaborador (`/app`), hipóteses e decisões abertas. | PRD fechado, roadmap aprovado, pacote comercial ou entrega RH (`/hr`). |
+| **Experiência** | Rotas, telas, *copy*, fluxos, estados observados e carga cognitiva por papel. | Testes de usabilidade concluídos ou estados finais de produção. |
+| **Carreira individual** | Dashboard, perfil, PDI, Pulse, skills, gaps, performance, projetos e squads. | Regras finais de promoção, calibragem, manager review e governança de carreira. |
+| **Leitura organizacional** | Referência conceitual da trilha RH Tech People para roadmap. | Implementação `/hr`, BI real, origem de dados, matriz de permissões e anonimização final. |
+| **Arquitetura** | Contexto C4 nível 1, fronteiras conceituais e pendências técnicas. | Backend, contratos de API, modelo físico de dados, observabilidade e SLAs. |
+
+---
+
+## Fora do escopo atual
+
+- Backend de produção.
+- Autenticação, SSO, permissões e perfis finais.
+- Integrações reais com RHIS, BI, ATS, folha, ferramentas de performance ou diretórios corporativos.
+- Contratos de API, modelo físico de dados, SLAs e observabilidade.
+- Preços, nomes comerciais de pacotes e termos legais.
+- Implementação da trilha RH Tech People (`/hr/*`) nesta fase.
+
+---
+
+## North Star candidata
+
+Uma North Star deve representar valor para o usuário e ser indicador antecedente de resultado de negócio. Ainda não há métrica fechada para este módulo. A candidata abaixo organiza a discussão:
+
+| Elemento | Definição candidata |
+|----------|---------------------|
+| **North Star** | **Ações de desenvolvimento concluídas com evidência de evolução.** |
+| **Por que esta métrica** | Conecta valor individual (`/app`) e valor organizacional (`/hr`): a pessoa evolui, e RH consegue observar progresso com evidência rastreável. |
+| **Unidade de contagem** | Meta PDI concluída, check finalizado, gap fechado, feedback incorporado ou ação de desenvolvimento validada. |
+| **Risco da métrica** | Contar ações fáceis demais e inflar sucesso sem evolução real. Requer critério de qualidade de evidência e vínculo com competência ou gap. |
+
+:::tip Definição da North Star
+
+Antes de entrar no PRD, transforme a candidata em frase SMART: quem mede, em qual período, a partir de qual baseline e com qual meta. Veja [critérios SMART](#critérios-smart-para-métricas).
+
+:::
+
+---
+
+## Métricas de entrada
+
+Use métricas de entrada para explicar por que a North Star sobe ou cai. Meça por segmento: colaborador, gestor, RH, empresa e tipo de oferta.
+
+| Dimensão | Métrica candidata | Evento ou evidência |
+|----------|-------------------|---------------------|
+| **Ativação** | Primeiro valor em `/app`: usuário entende próxima ação e inicia fluxo relevante. | Acesso ao dashboard + clique em ação rápida, PDI, Pulse ou gap. |
+| **Recorrência** | Retorno semanal ou mensal ao módulo. | Retenção por coorte, WAU/MAU ou retorno a eventos centrais. |
+| **Desenvolvimento** | Conversão **gap → meta SMART → progresso → conclusão**. | Gap vinculado ao PDI, meta criada, progresso atualizado, meta concluída. |
+| **Feedback** | Uso contínuo de Pulse e feedback 360° em ciclos de evolução. | Pulse enviado/recebido, check iniciado/concluído, feedback usado em PDI. |
+| **Decisão RH** | Métrica futura para leitura agregada em `/hr`. | Hipótese de roadmap — não instrumentar nesta fase. |
+| **Confiança nos dados** | Cobertura, atualização e rastreabilidade dos dados usados em decisão. | Percentual de campos preenchidos, origem registrada, atualização recente, permissão válida. |
+| **Qualidade da experiência** | Sucesso de tarefa, tempo na tarefa, erro e confiança declarada. | Testes de usabilidade, analytics de funil, formulário pós-tarefa. |
+
+---
+
+## Eventos mínimos de instrumentação
+
+Comece pelos eventos que provam valor, risco ou bloqueio — não instrumente tudo no início.
+
+| Rota | Eventos mínimos |
+|------|-----------------|
+| **`/app` Dashboard** | `dashboard_viewed`, `quick_action_clicked`, `next_step_opened`, `next_step_completed` |
+| **`/app/perfil` Skills/Gaps** | `gap_viewed`, `gap_filter_used`, `gap_link_pdi_clicked`, `gap_marked_as_linked` |
+| **`/app/pdi`** | `pdi_goal_created`, `pdi_goal_updated`, `pdi_goal_completed`, `check_started`, `check_completed` |
+| **`/app/pulse`** | `pulse_sent`, `pulse_received_viewed`, `pulse_filter_used` |
+| **`/hr` futuro** | `hr_overview_viewed`, `people_insight_opened`, `report_viewed`, `action_created_from_insight` *(não instrumentar agora)* |
+
+:::tip Instrumentação enxuta
+
+Cada evento precisa carregar contexto mínimo: papel do usuário, segmento, rota, origem da ação, status, objeto relacionado e timestamp. Não capture conteúdo sensível de feedback ou avaliação sem regra de privacidade definida.
+
+:::
+
+---
+
+## Critérios SMART para métricas
+
+Toda métrica candidata deve virar uma frase testável antes de entrar no PRD.
+
+| Critério | Pergunta de revisão |
+|----------|---------------------|
+| **Specific** | Que comportamento exato queremos mudar? |
+| **Measurable** | Qual evento, taxa, tempo ou indicador mede esse comportamento? |
+| **Achievable** | O produto consegue influenciar essa métrica no ciclo planejado? |
+| **Relevant** | A métrica prova valor para usuário, RH ou negócio? |
+| **Time-bound** | Em qual período a métrica será avaliada? |
+
+**Exemplo aplicado:** "Aumentar a conversão de **gap visualizado → meta PDI criada** em colaboradores ativos de `/app` de _baseline a definir_ para _meta a definir_, em 60 dias após o lançamento do fluxo."
+
+---
+
+## Métricas por trilha
+
+| Trilha | Métricas primárias | Métricas de guarda |
+|--------|--------------------|--------------------|
+| **Colaborador (`/app`)** | Ativação, recorrência, metas criadas, gaps vinculados, check concluído, Pulse enviado/recebido. | Tempo de tarefa, abandono, metas sem progresso, confusão entre Pulse/360/performance. |
+| **RH Tech People (`/hr`) futuro** | Relatórios consultados, insights abertos, ações criadas, tempo de consolidação, adoção por conta. | Uso sem ação, baixa confiança nos dados, quebra de privacidade, dependência manual de planilhas. |
+| **Conta B2B** | Usuários ativos por conta, cobertura de dados, health score, retenção, expansão. | Churn, baixa adoção em `/app`, poucos sinais para analytics, alto custo de implantação. |
+
+---
+
+## Qualidade e confiança
+
+Métricas de produto só ajudam se os dados forem confiáveis. Antes de usar qualquer indicador em decisão de RH, valide:
+
+- Origem do dado.
+- Frequência de atualização.
+- Permissão de visualização.
+- Se o dado é individual, agregado ou anonimizado.
+- Como corrigir erro, ausência ou divergência.
+- Quem é o dono da métrica.
+
+---
+
+## Próxima iteração de produto
+
+1. Definir a North Star final ou descartar a candidata.
+2. Selecionar 3 a 5 métricas de entrada para o primeiro ciclo.
+3. Criar taxonomia de eventos e propriedades.
+4. Definir baseline para ativação, recorrência, gap → PDI e tempo de decisão RH.
+5. Escrever critérios de aceite para estados vazios, erro, carregamento e dados incompletos.
+6. Separar métricas de produto de métricas comerciais em [Modelos de negócio](./modelos-negocio).
+
+---
+
+## Referências de método
+
+| Referência | Uso nesta página |
+|------------|------------------|
+| [Amplitude — North Star Metric](https://amplitude.com/en-us/blog/product-north-star-metric) | Definir North Star como métrica de valor para o usuário e indicador antecedente de resultado. |
+| [Amplitude — North Star hub](https://amplitude.com/north-star-hub) | Separar North Star de métricas de entrada influenciáveis pelo time. |
+| [Atlassian — product metrics](https://www.atlassian.com/agile/product-management/product-metrics) | Usar benchmarks, metas e estrutura SMART para métricas de produto. |
+| [Pendo — retention analytics](https://support.pendo.io/hc/en-us/articles/360032202931-Retention-Analytics) | Medir retorno por coorte, novos usuários e usuários existentes. |
+| [Pendo — feature adoption](https://www.pendo.io/glossary/feature-adoption/) | Medir adoção por eventos centrais, não apenas login. |
+| [Gainsight — customer health score](https://www.gainsight.com/customer-health-scores/) | Combinar uso, feedback, suporte e relacionamento para leitura de saúde de contas. |

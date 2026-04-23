@@ -1,0 +1,68 @@
+---
+sidebar_position: 4
+title: Gaps (`/app/perfil` · Skills)
+description: "Subaba Gaps — lacunas competência/hard/soft e ligação ao PDI no protótipo."
+---
+
+# Gaps (`/app/perfil` · Skills)
+
+<AnaliseProduto>
+
+### Finalidade
+
+A subaba **Gaps** agrega **lacunas** entre nível **atual** e **esperado**, derivadas do [radar](./matriz), das [Hard Skills](./hard), das [Soft Skills](./soft) e da análise cruzada no protótipo. Cada linha deve poder originar uma **meta no `/app/pdi`**, fechando o circuito diagnóstico → compromisso.
+
+### Regra de produto
+
+No mock, **13** gaps são contabilizados em conjunto com o cartão «Ver todos os gaps» na [Visão geral](../perfil-visao-geral). Estados **«Vinculado ao PDI»** vs **apenas «Criar Meta PDI»** distinguem lacunas já associadas a uma meta de desenvolvimento das que ainda não têm dono no plano.
+
+### Rastreabilidade
+
+| Origem | Uso |
+|--------|-----|
+| `/app/pdi` · [PDI](../perfil-pdi) | Metas e *work items* concretos do plano |
+| Visão geral | Resumo dos gaps prioritários em cartões |
+| Hard / Soft / Radar | Derivação das transições de nível |
+
+### Limitações do protótipo
+
+Prioridades e vínculos ao PDI são **dados de demonstração**; regras de negócio para promoção ou obrigatoriedade de meta não são definidas nesta página.
+
+</AnaliseProduto>
+
+<ReferenciaProtótipo>
+
+### Matriz de competências · framework L3–L5 (contexto na subaba)
+
+Este **framework** conecta as **7 competências-chave (Radar)** às **Hard Skills** técnicas e **Soft Skills** comportamentais, identificando **Gaps** que direcionam o **PDI** e a progressão de carreira **L5 → L6**. Cada competência é avaliada de forma estruturada para mapear o desenvolvimento individual.
+
+**Separadores no mock:** Competências · Hard Skills · Soft Skills · **Gaps** — inventários relacionados: [Matriz](./matriz) · [Hard Skills](./hard) · [Soft Skills](./soft).
+
+### Gaps identificados
+
+Lacunas entre o nível atual e esperado, derivadas da análise de competências, **hard skills** e **soft skills**. Cada gap pode ser convertido em meta do **PDI** para direcionamento estruturado do desenvolvimento.
+
+**Total:** **13** gaps identificados.
+
+| # | Lacuna (transição de nível) | Pilar (*competência radar*) | Estado no protótipo |
+|---|-----------------------------|------------------------------|---------------------|
+| 1 | React Advanced Patterns (*Sólido → Referência*) | Design de Soluções | Criar Meta PDI |
+| 2 | RxJS & Programação Reativa (*Desenvolvendo → Sólido*) | Design de Soluções | Vinculado ao PDI · Criar Meta PDI |
+| 3 | Security & OAuth (*Desenvolvendo → Sólido*) | Design de Soluções | Vinculado ao PDI · Criar Meta PDI |
+| 4 | Server Components · RSC (*Iniciante → Desenvolvendo*) | Design de Soluções | Criar Meta PDI |
+| 5 | Micro Frontends (*Desenvolvendo → Sólido*) | Arquitetura Frontend | Criar Meta PDI |
+| 6 | Design System Tokens (*Desenvolvendo → Sólido*) | Arquitetura Frontend | Criar Meta PDI |
+| 7 | Web Performance Optimization (*Sólido → Referência*) | Estratégia Técnica | Criar Meta PDI |
+| 8 | Arquitetura Cloud AWS (*Desenvolvendo → Sólido*) | Estratégia Técnica | Vinculado ao PDI · Criar Meta PDI |
+| 9 | CI/CD Avançado (*Desenvolvendo → Sólido*) | Estratégia Técnica | Criar Meta PDI |
+| 10 | Observabilidade & Monitoramento (*Sólido → Referência*) | Estratégia Técnica | Criar Meta PDI |
+| 11 | Accessibility · WCAG (*Desenvolvendo → Sólido*) | Performance & Otimização | Criar Meta PDI |
+| 12 | Tomada de Decisão Técnica (*Competente → Proficiente*) | Liderança Técnica | Criar Meta PDI |
+| 13 | Pensamento Crítico & Análise (*Competente → Proficiente*) | Liderança Técnica | Criar Meta PDI |
+
+**Legenda — ações no protótipo**
+
+- **Criar Meta PDI:** lacuna sem meta associada; acção primária é criar compromisso no PDI.
+- **Vinculado ao PDI · Criar Meta PDI:** já existe ligação a uma meta; o *copy* mantém reforço para criar ou completar meta.
+
+</ReferenciaProtótipo>

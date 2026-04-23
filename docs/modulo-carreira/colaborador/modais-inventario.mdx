@@ -1,0 +1,428 @@
+---
+sidebar_position: 12
+title: Modais e painéis — inventário
+description: "Levantamento completo de todos os modais, overlays e drawers do módulo Colaborador: campos, comportamento, origem dos dados e pendências abertas."
+---
+
+# Modais e painéis — inventário
+
+Cada interação do módulo Colaborador que abre uma camada sobre a tela principal está documentada aqui: o que dispara, o que contém, de onde vem o dado e o que ainda não está resolvido.
+
+:::note Escopo
+
+Cobre `/app` (Dashboard), `/app/pdi`, `/app/pulse`, `/app/perfil` e subáreas. Dados são do protótipo — não representam contrato de implementação.
+
+:::
+
+---
+
+## Dashboard (`/app`)
+
+### Dar Feedback
+
+**Disparo:** botão **Dar Feedback** nas ações rápidas do Dashboard ou na página Pulse.
+
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| Destinatário | Select | Busca por nome ou squad |
+| Categoria | Select | Tipos do domínio Pulse |
+| Mensagem | Textarea | Texto livre |
+| Vínculo com competência | Select (opcional) | Liga o feedback a um pilar do framework |
+
+**Ações:** Cancelar · **Enviar Feedback**
+
+**Fonte:** domínio Pulse — POST `/pulse`
+
+---
+
+### Check-in Semanal
+
+**Disparo:** botão **Check-in Semanal** nas ações rápidas.
+
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| Progresso | Text / slider | Descrição livre do avanço da semana |
+| Bloqueios | Textarea | O que está impedindo ou atrasando |
+| Sprint atual | Leitura | Pré-preenchido do contexto de squad |
+| Comentário livre | Textarea | Observações adicionais |
+
+**Ações:** Cancelar · **Registrar Check-in**
+
+**Fonte:** domínios Sprint + PDI
+
+---
+
+### Daily Standup
+
+**Disparo:** botão **Daily Standup** nas ações rápidas.
+
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| O que fiz | Textarea | Entregas do dia anterior |
+| O que farei | Textarea | Compromissos do dia |
+| Bloqueios | Textarea | Impedimentos ativos |
+| Hora | Leitura | Pré-preenchida |
+| Squad | Leitura | Pré-preenchido |
+
+**Ações:** Cancelar · **Registrar Standup**
+
+**Fonte:** domínio Sprint / Squads
+
+---
+
+### Próximo passo
+
+**Disparo:** clique em qualquer item do bloco **Próximos passos**.
+
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| Título | Leitura | Nome da pendência |
+| Estado | Badge | Pendente / Em andamento / Agendado |
+| Prazo | Leitura | Data-limite |
+| Descrição curta | Leitura | Contexto do passo |
+| CTA | Botão | Destino varia: `/app/pdi` (check pendente) ou Performance Review (self-assessment) |
+
+**Ações:** **[CTA com destino]** · Fechar
+
+**Fonte:** domínio PDI (check pendente) ou Performance (self-assessment)
+
+---
+
+### Épico em andamento
+
+**Disparo:** clique no bloco **Épico em andamento**.
+
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| Nome do épico | Leitura | Ex.: TALENT PLATFORM |
+| ID | Leitura | Ex.: TP-42 |
+| Sprint | Leitura | Sprint atual |
+| Prioridade | Badge | High / Medium / Low |
+| Progresso | Barra | Percentual de stories concluídas |
+| Story points | Leitura | Total e concluídos |
+| ETA | Leitura | Data estimada de entrega |
+| Stories | Lista | Itens do sprint com estado |
+
+**Ações:** Fechar · link para `/app/projetos`
+
+**Fonte:** domínio Projetos — integração candidata com ferramenta de delivery (Jira, Linear). **Não implementar ainda.**
+
+:::warning Inconsistência no protótipo
+
+O épico aparece como **"Autenticação & Autorização"** no cartão de métricas e como **"OAuth 2.1"** no feed de atividades. São dados de demonstração — o nome real precisa ser definido no PRD antes da implementação.
+
+:::
+
+---
+
+### Drawer de atividade
+
+**Disparo:** clique em qualquer item do feed **Atividades recentes**.
+
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| Tipo de evento | Badge | Feedback, PDI, Sprint, OKR, Projeto, Check-in, Certificação, 1:1, Onboarding |
+| Timestamp | Leitura | ISO 8601 |
+| Descrição | Leitura | Texto do evento |
+| Link de origem | Botão / link | Leva para a tela que gerou o evento |
+
+**Ações:** link para tela de origem · Fechar
+
+**Fonte:** domínio Eventos do módulo
+
+:::warning Pendência crítica
+
+Taxonomia de eventos, política de retenção e regra de ordenação (cronológica vs. relevância) ainda não estão definidas. Sem isso, o feed não pode ser implementado com contrato estável.
+
+:::
+
+---
+
+## PDI (`/app/pdi`)
+
+### Nova Meta SMART
+
+**Disparo:** botão **Nova Meta SMART** no cabeçalho do PDI ou **Criar Meta** nos cartões de cobertura.
+
+| Campo | Obrig. | Tipo | Notas |
+|-------|--------|------|-------|
+| Vincular a Gap | Não | Select | "Nenhum (meta independente)" ou "Skill (origem → destino) (pilar)". Confirmação verde ao selecionar gap válido. |
+| Título da Meta | Sim | Text | Ex.: *Dominar RxJS e Programação Reativa* |
+| Pilar do Framework | Sim | Select colorido | Design de Soluções · Estratégia Técnica · Comunicação & Influência · Trabalho em Equipe · Resolução de Conflitos |
+| Prioridade | Não | Pills | Alta / Média / Baixa |
+| Data Limite | Sim | Date picker | — |
+| Descrição Geral | Sim | Textarea | — |
+
+**Assistente SMART** — acordeão expansível com orientação por letra:
+
+| Letra | Foco | Pergunta |
+|-------|------|----------|
+| **S** · Específico | O quê | O que exatamente você quer alcançar? |
+| **M** · Mensurável | Medição | Como você vai medir o progresso? |
+| **A** · Alcançável | Passos | Quais passos você vai seguir? |
+| **R** · Relevante | Porquê | Por que essa meta é importante? |
+| **T** · Temporal | Marcos | Quais são os marcos intermediários? |
+
+**Ações:** Cancelar · **Criar Meta**
+
+**Fonte:** domínio PDI
+
+:::warning Pendências
+
+- Tema escuro: itens não selecionados do select de gap podem ter contraste insuficiente (CSS `SelectContent`).
+- Se o vínculo ao gap não persistir após **Criar Meta**, tratar como defeito de integração.
+
+:::
+
+---
+
+### Editar PDI completo
+
+**Disparo:** botão **Editar PDI Completo** em `/app/perfil` · aba PDI.
+*Breadcrumb:* Carreira › Plano de Desenvolvimento
+
+Não é modal — abre tela dedicada.
+
+| Bloco | Tipo | Conteúdo (mock) |
+|-------|------|-----------------|
+| Objetivo de Carreira | Textarea editável | Ex.: *Evoluir para Senior Product Owner focado em produtos de IA e automação* |
+| Planos de Ação | Lista | Título · Descrição · Estado · Prazo · Progresso |
+| Etapas (fases) | Lista | Fase 1: Fundamentos (Q1 2026) · Fase 2: Aplicação Prática (Q2–Q3 2026) |
+
+**Exemplos de planos de ação:**
+
+| Título | Estado | Prazo | Progresso |
+|--------|--------|-------|-----------|
+| Certificação em Product Management (PSPO II) | Em Andamento | 30/06/2026 | 40% |
+| Mentoria com Senior PM (sessões quinzenais) | Não Iniciado | 30/09/2026 | 0% |
+
+:::tip Nova Meta SMART vs Editar PDI completo
+
+**Nova Meta SMART** alinha metas com critérios SMART, gaps e cobertura por pilar — foco operacional. **Editar PDI Completo** agrega objetivo de carreira, planos de ação com prazo e fases — foco estrutural. São complementares.
+
+:::
+
+**Pendência:** comportamento de **Editar Avaliações** (persistência, *draft* vs publicado) e fluxo formal de calibragem entre manager e RH não estão definidos.
+
+---
+
+### Check de Evolução
+
+**Disparo:** botão **Continuar Check** no check ativo, ou acesso pelo PDI.
+
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| Ciclo | Leitura | Ex.: Q1 2026 |
+| Estado | Badge | Em andamento / Concluído |
+| Início / Prazo | Leitura | Datas do ciclo |
+| Progresso | Barra + % | Ex.: 40% |
+| Pilares concluídos | Leitura | Ex.: 2/5 |
+
+**Respondentes:**
+
+| Respondente | Estado |
+|-------------|--------|
+| Você (autoavaliação) | Concluído / Pendente |
+| Gestor: [nome] | Concluído / Pendente |
+| Peer: [nome] × N | Concluído / Pendente |
+
+**Pilares avaliados:**
+
+| Pilar | Questões | Score |
+|-------|----------|-------|
+| Performance / Desempenho | X/8 | 0–5 |
+| Skills & Competências | X/6 | 0–5 |
+| Fit Cultural / PE Cultural | X/5 | 0–5 |
+| Nível de Potencialidade | X/7 | 0–5 |
+| Competências Gerais | X/6 | 0–5 |
+
+**Ações:** **Continuar Check** · Fechar
+
+**Fonte:** domínio PDI + histórico de checks
+
+:::note Variação de nomenclatura no protótipo
+
+No modal de introdução: *Performance*, *Skills & Competências*, *Fit Cultural*. No overlay em curso: *Desempenho*, *Skills*, *PE Cultural*. São variantes de copy no mock — não representam pilares distintos.
+
+:::
+
+---
+
+### Histórico de checks
+
+**Disparo:** clique em **Consultar** em qualquer ciclo concluído na tabela de histórico.
+
+| Campo | Notas |
+|-------|-------|
+| Ciclo | Q4 2025, Q3 2025… |
+| Estado | Concluído |
+| Score geral | Média dos pilares |
+| Data de conclusão | — |
+| Pilares concluídos | X/5 |
+| Peers respondentes | X/5 |
+| Score por pilar | Tabela expandida |
+
+**Ações:** Fechar · link para [Jornada](./perfil-jornada)
+
+---
+
+## Pulse (`/app/pulse`)
+
+### Enviar Pulse
+
+**Disparo:** botão **Enviar Pulse** na página Pulse (mesmo formulário disparado por **Dar Feedback** no Dashboard).
+
+| Campo | Obrig. | Tipo |
+|-------|--------|------|
+| Destinatário | Sim | Select com busca |
+| Categoria | Sim | Select — tipos do domínio Pulse |
+| Mensagem | Sim | Textarea |
+| Vínculo com competência | Não | Select — pilar do framework |
+
+**Ações:** Cancelar · **Enviar**
+
+**Fonte:** domínio Pulse
+
+:::warning Pendência
+
+Campos detalhados não estão documentados no protótipo. Levantar com design antes de especificar.
+
+:::
+
+---
+
+### Detalhe de Pulse
+
+**Disparo:** clique em qualquer item do feed de reconhecimentos.
+
+| Campo | Notas |
+|-------|-------|
+| Remetente | Nome + função |
+| Data | ISO 8601 |
+| Categoria | Ex.: Trabalho em equipe · Além das expectativas |
+| Mensagem completa | Texto do reconhecimento |
+| Engajamento | Contadores de reação |
+
+**Ações:** Fechar
+
+**Fonte:** domínio Pulse
+
+---
+
+## Perfil — Visão geral (`/app/perfil`)
+
+### Criar Meta PDI sugerida
+
+**Disparo:** botão **Criar Meta PDI** no bloco Pulse Intelligence.
+
+| Campo | Notas |
+|-------|-------|
+| Meta sugerida | Ex.: *Tech Talk sobre Arquitetura* |
+| Justificativa | Ex.: *4 reconhecimentos sobre arquitetura indicam expertise para compartilhar* |
+| Formulário pré-preenchido | Nova Meta SMART com contexto da sugestão já populado |
+
+**Ações:** **Criar Meta PDI** · Ignorar sugestão
+
+**Fonte:** análise Pulse Intelligence (IA) + domínio Pulse
+
+:::warning Pendências críticas
+
+Regras de IA, privacidade, opt-in e critério de "recorrência suficiente" para disparar sugestão **não estão definidos**. Não implementar sem PRD.
+
+:::
+
+---
+
+### Detalhe de gap
+
+**Disparo:** clique em card de gap no bloco **Próxima ação recomendada**.
+
+| Campo | Notas |
+|-------|-------|
+| Nome do gap | Ex.: React Advanced Patterns |
+| Transição de nível | Ex.: Sólido → Referência |
+| Pilar | Ex.: Design de Soluções |
+| Estado no PDI | Nenhuma meta criada / 1 meta ativa |
+| Estudo sugerido | Nome do curso |
+| Mentoria sugerida | Nome do mentor |
+
+**Ações:** **Criar Meta** (se sem PDI) · **Ver PDI** (se já vinculado) · Fechar
+
+**Fonte:** domínios Gap + PDI + Matriz
+
+---
+
+## Perfil — Jornada (`/app/perfil`)
+
+### Detalhes de check
+
+**Disparo:** **Ver Detalhes** no painel de checks ou clique num ciclo na tabela de autoavaliações.
+
+| Campo | Notas |
+|-------|-------|
+| Ciclo | Ex.: Q1 2026 |
+| Status | Em andamento / Concluído |
+| Datas | Início e prazo |
+| Score geral | — |
+| Progresso | % e pilares X/5 |
+| Respondentes | Você, gestor, peers |
+| Score por pilar | Tabela com 5 linhas |
+
+**Ações:** **Continuar Check** (se em andamento) · Fechar
+
+---
+
+### Trilha de carreira Y
+
+**Disparo:** clique na trilha alternativa (ex.: L6 · Engineering Manager) no painel de progressão.
+
+| Campo | Notas |
+|-------|-------|
+| Nome da trilha | Ex.: L6 · Staff Engineer |
+| Descrição | Perfil esperado para a trilha |
+| Prontidão | Percentual (ex.: 67%) |
+| Critérios individuais | Competência · Score atual / Esperado |
+| Recomendação | Texto orientativo do sistema |
+
+**Ações:** Fechar
+
+---
+
+## Perfil — Skills Gaps
+
+### Criar Meta PDI a partir de gap
+
+**Disparo:** botão **Criar Meta PDI** na linha do gap ou no card de recomendação.
+
+Abre o modal [Nova Meta SMART](#nova-meta-smart) com o campo **Vincular a Gap** já preenchido com o gap selecionado.
+
+| Campo pré-preenchido | Valor |
+|----------------------|-------|
+| Vincular a Gap | Gap selecionado |
+| Pilar do Framework | Pilar do gap |
+
+Os demais campos seguem o comportamento padrão de Nova Meta SMART.
+
+---
+
+## Resumo executivo
+
+| # | Modal / painel | Tela | Disparo | Pendência |
+|---|----------------|------|---------|-----------|
+| 1 | Dar Feedback | Dashboard · Pulse | Ação rápida | — |
+| 2 | Check-in Semanal | Dashboard | Ação rápida | — |
+| 3 | Daily Standup | Dashboard | Ação rápida | — |
+| 4 | Próximo passo | Dashboard | Clique no item | — |
+| 5 | Épico em andamento | Dashboard | Clique no bloco | Naming inconsistente; integração não implementada |
+| 6 | Drawer de atividade | Dashboard | Clique no feed | Taxonomia, retenção e ordenação indefinidas |
+| 7 | Nova Meta SMART | PDI | Botão cabeçalho ou cobertura | Contraste dark theme; persistência do gap |
+| 8 | Editar PDI completo | PDI | Botão em `/app/perfil` | Draft vs publicado indefinido |
+| 9 | Check de Evolução | PDI | Continuar Check | Variação de nomenclatura no protótipo |
+| 10 | Histórico de checks | PDI | Consultar ciclo | — |
+| 11 | Enviar Pulse | Pulse | Botão principal | Campos não documentados no protótipo |
+| 12 | Detalhe de Pulse | Pulse | Clique no item | — |
+| 13 | Criar Meta sugerida | Perfil — Visão geral | Pulse Intelligence | IA, privacidade e opt-in indefinidos |
+| 14 | Detalhe de gap | Perfil — Visão geral | Clique no card | — |
+| 15 | Detalhes de check | Perfil — Jornada | Ver Detalhes | — |
+| 16 | Trilha de carreira Y | Perfil — Jornada | Clique na trilha | — |
+| 17 | Criar Meta de gap | Perfil — Skills Gaps | Botão no gap | Herda pendências de Nova Meta SMART |

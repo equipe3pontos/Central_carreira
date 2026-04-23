@@ -1,0 +1,86 @@
+---
+sidebar_position: 1
+title: Centro da documentação
+description: "Entrada do Módulo de Carreira da Hunter: leitura recomendada, papéis, status das informações e trilhas documentadas."
+---
+
+# Centro da documentação
+
+> **Módulo de Carreira** conecta evolução individual e inteligência organizacional de talentos. A fase atual documenta e prioriza a trilha **Colaborador** (`/app`). **RH Tech People** (`/hr`) é referência de roadmap.
+
+Escolha o próximo documento, entenda o grau de confiança de cada informação e alinhe vocabulário antes de abrir telas específicas.
+
+---
+
+## Leitura por papel
+
+| Papel | O que buscar aqui |
+|-------|-------------------|
+| **PM / Produto** | Problema, proposta de valor, escopo, riscos, métricas candidatas e decisões abertas para PRD. |
+| **P.O** | Histórias refináveis, critérios de aceite, dependências e cortes de escopo para planejamento. |
+| **Design** | Fluxos, carga cognitiva, estados de tela, decisões de navegação e pontos de validação com usuário. |
+| **Engenharia** | Rotas, fronteiras funcionais, integrações candidatas, regras pendentes e termos para contrato técnico. |
+| **RH / People** | Narrativa de talento, desenvolvimento, analytics e governança — sem depender de detalhe de implementação. |
+
+---
+
+## Status das informações
+
+Antes de converter qualquer trecho em backlog ou requisito, confira o tipo da informação.
+
+| Selo | Significado |
+|------|-------------|
+| **Decisão documentada** | Orienta refinamento, desde que não conflite com PRD, arquitetura ou decisão posterior. |
+| **Referência do protótipo** | Tela, fluxo, *copy* ou dado observado no protótipo publicado — não é contrato de produção. |
+| **Hipótese de produto** | Precisa de validação: discovery, teste de usabilidade, análise técnica, dados reais ou decisão de negócio. |
+| **Pendência de produção** | Depende de integração, segurança, permissão, dados reais, SLA, contrato ou arquitetura. |
+
+:::note Protótipo
+
+Números, nomes de telas, *copy*, fluxos e regras descritos a partir do protótipo publicado são **referências e hipóteses de produto**, salvo indicação contrária. Não são decisão final de produção.
+
+:::
+
+---
+
+## Ordem recomendada
+
+1. **[Conceitos principais](./conceitos)** — Produto, foco em `/app` e status futuro de `/hr`.
+2. **[Glossário](./glossario)** — Terminologia oficial antes de escrever histórias, critérios ou especificações.
+3. **[Visão geral](./overview)** — Síntese executiva; escolha qual fundamento aprofundar.
+4. **[Problema e proposta](./problema-proposta)** — Tese de produto e por que `/app` vem primeiro.
+5. **[Escopo e métricas](./escopo-metricas)** — Limites da documentação e métricas candidatas.
+6. **[Mapa de rotas](./rotas-prototipo)** — URLs canônicas e aliases do protótipo.
+7. **Trilha ativa** — Siga para **[Colaborador](./colaborador)**. Use **[RH Tech People](./rh-tech-people)** apenas como referência futura.
+
+---
+
+## Mapa rápido
+
+| Necessidade | Documento |
+|-------------|-----------|
+| Alinhar linguagem e fronteiras | [Conceitos principais](./conceitos) |
+| Confirmar significado de termos | [Glossário](./glossario) |
+| Entender a tese de produto | [Visão geral](./overview) |
+| Aprofundar problema e proposta | [Problema e proposta](./problema-proposta) |
+| Discutir B2C, B2B e compradores | [Modelos de negócio](./modelos-negocio) |
+| Ver escopo, fora de escopo e métricas | [Escopo e métricas](./escopo-metricas) |
+| Contexto C4 e decisões técnicas | [Arquitetura e decisões](./arquitetura-decisoes) |
+| Ver caminhos do protótipo | [Mapa de rotas](./rotas-prototipo) |
+| Criar ou revisar diagramas | [Diagramas e jornadas](./diagramas-e-jornadas) |
+| Documentar experiência individual | [Colaborador](./colaborador) |
+| Consultar referência futura de RH | [RH Tech People](./rh-tech-people) |
+
+---
+
+## Primeiro percurso
+
+<FlowchartSteps
+  aria-label="Primeiro percurso recomendado na documentação"
+  steps={[
+    {to: './conceitos', title: 'Conceitos principais', isCurrent: true},
+    {to: './glossario', title: 'Glossário'},
+    {to: './overview', title: 'Visão geral'},
+    {to: './colaborador', title: 'Trilha Colaborador'},
+  ]}
+/>

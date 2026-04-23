@@ -1,0 +1,88 @@
+---
+sidebar_position: 2
+title: Conceitos principais
+description: "Conceitos estruturantes do Módulo de Carreira: trilhas Colaborador e RH Tech People, prefixos /app e /hr, protótipo e produção."
+---
+
+# Conceitos principais
+
+> O **Módulo de Carreira** conecta **evolução individual** e **inteligência de pessoas**. O protótipo tem duas trilhas, mas a fase atual documenta **somente Colaborador** (`/app`). **RH Tech People** (`/hr`) é referência de roadmap.
+
+Esta página fixa os conceitos que devem permanecer estáveis nas demais páginas. Quando uma tela precisar de detalhe específico, ela deve apontar para cá em vez de redefinir.
+
+---
+
+## Um produto, duas trilhas
+
+| Trilha | Prefixo | Pergunta que responde |
+|--------|---------|------------------------|
+| **Colaborador** | **`/app`** | Como estou evoluindo, quais metas tenho e quais sinais devo acompanhar? |
+| **RH Tech People** | **`/hr`** | *Fase futura:* o que a organização sabe sobre talentos, riscos, desempenho e evolução dos times? |
+
+A separação existe porque cada público toma decisões diferentes: a pessoa colaboradora age sobre a própria trajetória; RH e liderança analisam padrões, riscos e prioridades coletivas. As duas trilhas compartilham o mesmo núcleo de dados — carreira, competências, feedback e desenvolvimento.
+
+---
+
+## O que são `/app` e `/hr`
+
+**`/app` e `/hr` são prefixos do protótipo**, não uma decisão final de arquitetura de produção.
+
+| Prefixo | Função |
+|---------|--------|
+| **`/app`** | Telas de primeira pessoa: dashboard, perfil, PDI, Pulse, projetos, squads e avaliações. |
+| **`/hr`** | Telas de decisão organizacional no protótipo. **Não entra na entrega atual.** |
+
+O contrato final de rotas, autenticação, permissões e domínios depende da implementação e do PRD. A lista atual de caminhos está no [mapa de rotas](./rotas-prototipo).
+
+---
+
+## B2C e B2B usam o mesmo núcleo
+
+| Modelo | Valor principal | Superfície mais visível |
+|--------|-----------------|--------------------------|
+| **B2C** | Desenvolvimento individual, organização de metas, feedback e visibilidade de carreira. | **Colaborador** (`/app`) |
+| **B2B** | Governança de talentos, analytics, relatórios e decisões de pessoas em escala. | **RH Tech People** (`/hr`) em roadmap; nesta fase, apenas referência. |
+
+Quem paga e quem usa podem ser papéis diferentes: um profissional PJ pode comprar acesso próprio, ou acessar a trilha Colaborador porque uma empresa contratou o módulo. A documentação registra essa nuance — não define preço, pacote ou contrato comercial.
+
+---
+
+## Documentação, protótipo e produção
+
+| Camada | Papel nesta documentação |
+|--------|--------------------------|
+| **Site Docusaurus** | Fonte versionada para alinhar linguagem, escopo, rotas, decisões de produto e leitura técnica. |
+| **Protótipo** | Referência visual e narrativa: telas, *copy*, fluxos e dados simulados. |
+| **Produção** | Implementação real: autenticação, integrações, permissões, dados, observabilidade, SLAs e segurança. |
+
+Quando uma informação vier do protótipo, trate como referência de produto. Quando depender de produção, marque como hipótese, pendência ou decisão externa até existir PRD ou arquitetura fechada.
+
+---
+
+## O que conta como hipótese
+
+Uma **hipótese** é uma ideia plausível ainda não validada como decisão final. Nesta documentação, hipóteses aparecem quando o protótipo sugere um comportamento, mas faltam evidências ou acordos para produção.
+
+| Exemplo | Por que é hipótese |
+|---------|--------------------|
+| Métricas de adoção, engajamento ou impacto | Precisam de baseline, instrumento analítico, meta SMART, dono e período de medição. |
+| Regras de acesso entre `/app` e `/hr` | Dependem de perfis, consentimento, privacidade e arquitetura de autorização. |
+| Integrações com SSO, RHIS, BI ou ATS | Dependem de sistemas reais, contratos, protocolos e desenho de dados. |
+| Fluxos observados no protótipo | Validam intenção de UX, mas não garantem persistência, API, estados de erro ou regra operacional. |
+
+Quando uma hipótese virar decisão, atualize a página de origem e remova a ambiguidade.
+
+---
+
+## Onde aprofundar
+
+| Necessidade | Página |
+|-------------|--------|
+| Síntese de produto | [Visão geral](./overview) |
+| Problema e proposta de valor | [Problema e proposta](./problema-proposta) |
+| Escopo e métricas | [Escopo e métricas](./escopo-metricas) |
+| Vocabulário operacional | [Glossário](./glossario) |
+| Inventário de URLs | [Mapa de rotas](./rotas-prototipo) |
+| Templates de diagrama Mermaid | [Diagramas e jornadas](./diagramas-e-jornadas) |
+| Telas da experiência individual | [Colaborador](./colaborador) |
+| Referência futura organizacional | [RH Tech People](./rh-tech-people) |

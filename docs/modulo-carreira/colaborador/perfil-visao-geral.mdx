@@ -1,0 +1,156 @@
+---
+sidebar_position: 6
+title: Visão geral (`/app/perfil`)
+description: "Análise do separador Visão geral e conteúdo de referência do protótipo."
+---
+
+# Visão geral (`/app/perfil`)
+
+<AnaliseProduto>
+
+### Finalidade
+
+Responder **numa única leitura** a: papel no produto, estado no ciclo (quarter), traço de jornada gamificado, sinais automáticos sobre feedback (**Pulse Intelligence**) e **lacunas priorizadas** face ao papel. É a superfície em que *percepção* e *suporte à decisão* (próximo passo, PDI) convergem antes do detalhe temporal ([Jornada](./perfil-jornada)) ou do detalhe em [Hard Skills](./skills/hard) / [Soft Skills](./skills/soft).
+
+### Decisão de UX (URL estável)
+
+**Visão geral**, **Jornada**, **Skills**, **Experiência**, etc. partilham **`/app/perfil`**: altera-se apenas o separador no componente `Profile`. Ganho: uma URL para analytics e compartilhamento; custo: não há *deep link* por separador no router atual do protótipo.
+
+### Rastreabilidade
+
+| Origem / destino | Papel |
+|------------------|--------|
+| [Dashboard](./dashboard) | Cartões e feed são versão condensada desta narrativa |
+| [Jornada](./perfil-jornada) | Confirma datas e marcos anunciados aqui |
+| [Experiência](./perfil-experiencia) | Detalha cargos e projetos resumidos no momento atual |
+| [Matriz](./skills/matriz), [Hard](./skills/hard) / [Soft](./skills/soft) | Origem dos gaps e do «Ver todas as skills» |
+| `/app/pdi` · [PDI](./perfil-pdi) | Metas, 360° e atividades do plano |
+| `/app/pulse` | Entrada de dados para reconhecimentos e IA |
+
+### Limitações do protótipo
+
+Conteúdo ilustrativo (persona «Marcelo», scores fixos). Regras reais de IA, privacidade e opt-in não estão definidas nesta documentação.
+
+</AnaliseProduto>
+
+<ReferenciaProtótipo>
+
+Rota **`/app/perfil`**, separador **Visão Geral**. Ver [mapa de rotas](../rotas-prototipo).
+
+### Cabeçalho da página e identidade
+
+| Elemento | Conteúdo (protótipo) |
+|----------|----------------------|
+| Título da página | **Marcelo Henrique Machado - Engenheiro de Software Sênior · Frontend** |
+| Nome | **Marcelo Henrique Machado** |
+| Nível | **L5 · Senior** |
+| *Squad(s) & Tribo* | **Engenheiro de Software Sênior · Frontend · Product Engineering** |
+| Alocação | **Squad Plataforma** |
+| *Report* | **Rafael Mendes** |
+| Modelo / local | **Híbrido · São Paulo, SP** |
+| Desde | **Mar 2022** |
+| E-mail | **marcelo.silva@hunter.com** |
+| ID interno | **3P-00247** |
+| LinkedIn | **`/in/marcelosilva`** |
+| Ação | **Editar Perfil** |
+
+### Indicadores em destaque (cartões superiores)
+
+| Indicador | Valor |
+|-----------|-------|
+| **Perfil Completo** | **92%** |
+| **Performance Score** | **4.2 / 5.0** |
+| **Nível de Senioridade** | **L5 · Senior** |
+
+### Separadores do perfil
+
+Ordem no protótipo: **Visão Geral** · **Jornada** · **Skills** · **Experiência** · **PDI** · [Avaliações](./perfil-performance-review). Este documento cobre só **Visão Geral**.
+
+### Seu momento atual
+
+#### Squad e alocação
+
+| Campo | Valor |
+|-------|-------|
+| Squad | **Squad Plataforma** |
+| Produto / plataforma | **TALENT PLATFORM** |
+| Estado | **Ativo** |
+
+#### Quarter e métricas de negócio
+
+| Métrica | Valor |
+|---------|-------|
+| **Quarter Atual** | **Q2 2026** |
+| **Progresso Temporal** | **24%** |
+| **Média OKRs** | **0%** |
+| **Pulses Recebidos** | **0** |
+| Contagem | **68 dias restantes** |
+
+#### Traço de jornada («Desbravador»)
+
+| Elemento | Texto |
+|----------|--------|
+| *Título* | **Desbravador** · *Nível Sênior* |
+| Descrição | **Você abre novos caminhos na sua jornada!** |
+| Progresso para **Pioneiro** | **78%** |
+| Chamada | *Continue evoluindo para alcançar o próximo nível!* |
+
+#### Próximos marcos — «Requer atenção»
+
+| Item | Detalhe |
+|------|---------|
+| OKR (atrasado) | **"Otimizar Performance Frontend da TALENT PLATFORM"** — **78%** · Ciclo **Q1 2026** |
+| OKR (atrasado) | **"Aumentar cobertura de testes automatizados"** — **62%** · Ciclo **Q1 2026** |
+| Skill | **TypeScript Advanced** próxima de validar — **4/5** competências validadas · Falta: **Design Patterns** |
+
+### Pulse Intelligence (IA)
+
+| Elemento | Conteúdo |
+|----------|----------|
+| *Tag* | **Pulse Intelligence** · **IA** |
+| Mensagem | *Detectamos padrões nos seus pulses recentes* |
+| Tema destacado | **Arquitetura** — **4 pulses** · *Pilar: Technical Excellence* |
+| Exemplos de pulses (resumo) | Citações sobre **arquitetura**, *deploy zero-downtime v2.0*, **documentação arquitetural** como referência no time |
+| Ligação | **+2 mais** |
+| **Meta PDI sugerida** | **Tech Talk sobre Arquitetura** — preparar *tech talk* interno sobre decisões arquiteturais recentes |
+| Justificativa | *Por quê? 4 reconhecimentos sobre arquitetura indicam expertise para compartilhar.* |
+| Ação | **Criar Meta PDI** |
+| Rodapé explicativo | *Pulse Intelligence analisa reconhecimentos recebidos e sugere metas PDI automaticamente…* |
+
+### Conquistas recentes (*Últimos 30 dias*)
+
+| Tipo | Detalhe |
+|------|---------|
+| *Insight* | **1 insight** |
+| Pulse | De **Ana Rodrigues** · *Trabalho em equipe* — liderança técnica na Sprint 7 |
+| Pulse | De **Rafael Mendes** · *Além das expectativas* — otimização API, latência P95 |
+| Pulse | De **Lucas Almeida** · *Excelente mentor* — sessões de mentoria |
+| Certificação | **React Advanced Certification** obtida — **28 Fev 2026** · Validade: 2 anos |
+| Skill validada | **Micro Frontends** → **Sólido** — por **Rafael Mendes** · *Pillar: Arquitetura Frontend* |
+
+### Framework de competências
+
+| Elemento | Valor |
+|----------|-------|
+| Ligação | **Ver Detalhes** |
+| Progressão | **L6 · Staff** — **84%** completo |
+| Tempo estimado | **6 meses** |
+| **Pontos fortes** (scores) | **Design** 85 · **Arquitetura** 80 |
+| **Focar em** | **Performance** 75 · **Estratégia** 75 |
+| Resumo | **1** Fortes · **3** Gaps · **3** PDI |
+
+### Próxima ação recomendada e áreas de foco (gaps)
+
+**Chamadas gerais:** *Continuar desenvolvimento em Estratégia Técnica* · **Áreas de Foco** — *Gaps identificados vs Sênior* · **Ver Todas Skills**.
+
+Cada cartão de gap inclui o subtítulo **Design de Soluções** no protótipo.
+
+| Prioridade | Skill / gap | Estado PDI | Estudo / mentoria sugeridos |
+|------------|-------------|------------|-----------------------------|
+| **1** | **React Advanced Patterns** (*Sólido → Referência*) | *Nenhuma meta PDI criada* · **Criar Meta** | Curso **React Advanced Patterns** · Mentoria: **Rafael Mendes** |
+| **2** | **RxJS & Programação Reativa** (*Desenvolvendo → Sólido*) | **1 meta PDI ativa** (*Dominar RxJS para Programação Reativa…*) · **Ver PDI** | Curso **RxJS Advanced Patterns** · Mentoria: **Rafael Mendes** |
+| **3** | **Security & OAuth** (*Desenvolvendo → Sólido*) | **1 meta PDI ativa** (*Implementar OAuth 2.1 no Authentication …*) · **Ver PDI** | Curso **Security Advanced Patterns** · Mentoria: **Rafael Mendes** |
+
+Ligação de produto: *Ver todos os **13** gaps* na aba Skills — inventário em [Gaps](./skills/gaps); contexto em [Matriz](./skills/matriz), [Hard Skills](./skills/hard) e [Soft Skills](./skills/soft).
+
+</ReferenciaProtótipo>

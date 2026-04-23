@@ -1,0 +1,94 @@
+---
+sidebar_position: 3
+title: Modelos de negócio
+description: "Leitura de produto para B2C, B2B, PLG, venda assistida e operação do Módulo de Carreira, sem definir preço, pacote ou contrato."
+---
+
+# Modelos de negócio
+
+> O Módulo de Carreira pode usar o mesmo núcleo de produto em movimentos comerciais diferentes: self-service individual, venda B2B, expansão por uso e operação assistida. Esta página define implicações de produto. Preço, pacote, SLA e contrato continuam fora do escopo até existir decisão comercial.
+
+## Princípio de desenho comercial
+
+Não partir o produto em “um B2C” e “um B2B” separados. O núcleo deve ser comum: carreira, competências, feedback, PDI, performance e leitura organizacional. O que muda é o **movimento de go-to-market**:
+
+| Movimento | Quem compra | Quem usa primeiro | Onde o produto precisa provar valor |
+|-----------|-------------|-------------------|-------------------------------------|
+| **Self-service individual** | Profissional ou PJ | Colaborador em `/app` | Clareza de próxima ação, PDI útil, progresso visível e recorrência. |
+| **B2B sales-led** | Empresa, RH, People ou liderança | RH em `/hr` + colaboradores em `/app` | Governança, analytics, relatório, segurança, permissões e valor para conta. |
+| **Híbrido PLG + sales-led** | Usuário inicia; empresa expande | Colaborador ou pequeno grupo | Uso individual gera sinal para venda, expansão ou adoção corporativa. |
+| **Operação assistida** | Empresa cliente | Usuários finais + operação Hunter/3pts | Software + serviço: configuração, acompanhamento, relatórios e gestão do processo. |
+
+:::note Leitura de mercado
+
+Gartner descreve PLG e sales-led como um continuum, não como escolhas excludentes; a McKinsey também alerta que PLG só performa quando se conecta a execução comercial e produto, não por adoção tática isolada. Para este módulo, a decisão mais segura é tratar B2C, B2B e operação assistida como **teses de oferta** a validar, não como pacotes prontos.
+
+:::
+
+## Comprador, usuário e decisor
+
+Em produtos de carreira, quem paga nem sempre é quem usa diariamente. Separar esses papéis evita confundir valor percebido, permissão de dados e métrica de sucesso.
+
+| Papel | Pergunta que faz | Exemplo no módulo |
+|-------|------------------|-------------------|
+| **Usuário final** | “Isso me ajuda a evoluir ou decidir melhor hoje?” | Colaborador usando dashboard, PDI, Pulse, gaps e avaliações. |
+| **Comprador** | “Vale o custo, risco e mudança operacional?” | Empresa, RH, People, liderança ou profissional PJ. |
+| **Decisor técnico / segurança** | “Dá para integrar, proteger e operar?” | TI, segurança, arquitetura, jurídico ou governança de dados. |
+| **Influenciador** | “Isso melhora meu processo ou reduz trabalho manual?” | Gestores, RHBPs, líderes de capítulo, mentores e operação Hunter/3pts. |
+
+## Cenários de uso
+
+| Cenário | Modelo provável | Implicação de produto |
+|---------|-----------------|-----------------------|
+| **PJ compra acesso próprio** | Self-service individual | Onboarding simples, valor rápido em `/app`, PDI e gaps sem dependência de RH. |
+| **Empresa contrata para colaboradores internos** | B2B sales-led | Permissões, relatórios, governança de dados, implantação e leitura agregada em `/hr`. |
+| **Empresa inclui profissionais PJ no pacote** | B2B com usuários estendidos | Mesma experiência individual, mas com regras contratuais claras sobre visibilidade e dados. |
+| **Time pequeno começa por uso individual e expande** | Híbrido PLG + sales-led | Sinais de ativação e uso podem indicar oportunidade de conta, sem forçar venda precoce. |
+| **Hunter / 3pts opera como serviço associado** | Operação assistida | O produto precisa suportar configuração, acompanhamento, auditoria e relatórios operacionais. |
+
+## Embalagem do produto
+
+O módulo pode ser empacotado por capacidades. A tabela abaixo não define preço; define como pensar em corte de escopo.
+
+| Camada | Capacidades candidatas | Risco se empacotar cedo demais |
+|--------|------------------------|--------------------------------|
+| **Individual** | Dashboard, perfil, PDI, Pulse, gaps, metas SMART e histórico de carreira. | Criar uma oferta atrativa, mas sem retenção se o PDI não gerar ação recorrente. |
+| **Gestão de time** | Visão de squads, projetos, checks, performance e evolução por grupo. | Expor dados individuais sem regra clara de permissão ou consentimento. |
+| **RH / People Analytics** | Overview executivo, talentos, relatórios, risco, sucessão e leitura agregada. | Vender dashboard antes de validar quais decisões RH realmente toma. |
+| **Serviço assistido** | Configuração, governança, relatórios, acompanhamento e operação pela Hunter/3pts. | Misturar escopo de software com escopo de consultoria sem fronteira operacional. |
+
+## Métricas por movimento
+
+| Movimento | Métrica de produto | Métrica comercial | Sinais de alerta |
+|-----------|-------------------|-------------------|------------------|
+| **Self-service individual** | Ativação, recorrência, metas criadas, gaps convertidos em PDI, tempo até valor. | Conversão, retenção, receita recorrente individual, cancelamento por coorte. | Usuários criam conta, mas não voltam após ver o dashboard. |
+| **B2B sales-led** | Adoção por conta, uso de `/hr`, relatórios consultados, ações criadas após insight. | Ciclo de venda, ACV, expansão, renovação, NRR, churn por conta. | RH compra, mas colaboradores não alimentam sinais suficientes em `/app`. |
+| **Híbrido PLG + sales-led** | PQLs, profundidade de uso, convites, uso por domínio/empresa. | Conversão PQL → oportunidade, expansão por conta, upsell. | Uso individual não vira conversa de conta ou gera conflito com vendas. |
+| **Operação assistida** | Entregas acompanhadas, relatórios emitidos, pendências fechadas, qualidade dos dados. | Margem do serviço, custo de implantação, renovação, expansão de escopo. | Serviço vira trabalho manual fora do produto, sem escala. |
+
+:::tip Métricas antes de preço
+
+Antes de fechar preço, defina o comportamento que prova valor. Em PLG, referências como OpenView e ProductLed reforçam ativação, tempo até valor, adoção, retenção e PQL como métricas centrais. Em B2B sales-led, a compra depende também de consenso, segurança, implantação e valor percebido pela conta.
+
+:::
+
+## Decisões que ainda faltam
+
+| Decisão | Por que importa | Artefato esperado |
+|---------|-----------------|-------------------|
+| **Oferta inicial** | Evita tentar validar B2C, B2B, PLG e serviço ao mesmo tempo. | PRD ou one-pager de GTM com segmento prioritário. |
+| **Unidade de valor** | Define se o preço seguirá usuário, conta, módulo, uso, serviço ou combinação. | Hipótese de pricing/packaging com métrica de valor. |
+| **Permissões entre `/app` e `/hr`** | Sustenta confiança, privacidade e venda B2B. | Matriz de papéis, dados visíveis e consentimento. |
+| **Critério de ativação** | Define quando o usuário ou conta teve primeiro valor real. | Evento de ativação por movimento comercial. |
+| **Sinal de expansão** | Diferencia uso saudável de curiosidade inicial. | Definição de PQL, conta qualificada ou gatilho para CS/vendas. |
+| **Fronteira software vs serviço** | Evita vender operação manual como se fosse capacidade do produto. | Catálogo de responsabilidades Hunter/3pts vs cliente. |
+
+## Referências de método
+
+| Referência | Uso nesta página |
+|------------|------------------|
+| [Gartner — Product-Led Growth and Sales-Led Growth Continuum](https://www.gartner.com/en/doc/768802-infographic-product-led-growth-and-sales-led-growth-continuum) | Tratar PLG e sales-led como continuum. |
+| [Gartner — B2B buying journey](https://www.gartner.com/en/sales/insights/buyer-enablement) | Considerar compra B2B como jornada não linear, com consenso e validação. |
+| [McKinsey — From product-led growth to product-led sales](https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/from-product-led-growth-to-product-led-sales-beyond-the-plg-hype) | Evitar PLG como tática isolada; conectar produto, vendas e expansão. |
+| [OpenView — Product analytics for PLG](https://openviewpartners.com/blog/the-definitive-guide-product-analytics-for-product-led-growth/) | Usar ativação, tempo até valor, retenção e comportamento como sinais de saúde. |
+| [ProductLed — PLG metrics](https://productled.com/blog/product-led-growth-metrics) | Mapear ativação, adoção, PQL, expansão e churn como métricas de produto/comercial. |

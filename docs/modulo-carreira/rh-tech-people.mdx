@@ -1,0 +1,82 @@
+---
+sidebar_position: 5
+title: RH Tech People
+description: "Especificação inicial da trilha RH Tech People (/hr): proposta de valor, público, capacidades do protótipo e pendências para produto real."
+---
+
+# RH Tech People (`/hr`)
+
+> A trilha **RH Tech People** traduz dados de carreira, desempenho e engajamento em leitura organizacional. Ela complementa a trilha **Colaborador**: enquanto `/app` ajuda a pessoa a agir sobre a própria evolução, `/hr` ajuda RH, People e liderança a decidir em escala.
+
+:::warning Fora do escopo da fase atual
+
+RH Tech People **não será implementado agora**. Esta página preserva a intenção do protótipo para descoberta futura, alinhamento de linguagem e roadmap. Não usar como fonte de backlog de produção enquanto o escopo estiver focado no **Módulo Colaborador** (`/app`).
+
+:::
+
+## Sumário executivo
+
+No protótipo, **RH Tech People** concentra painéis e narrativas para quem precisa enxergar padrões de talento, riscos e oportunidades de desenvolvimento. A proposta não é substituir processos de RH, mas dar uma camada integrada de leitura sobre carreira, performance e evolução dos times.
+
+Esta página documenta o escopo inicial da trilha. Detalhes de BI, ATS, RHIS, permissões, anonimização e governança de dados devem ser fechados em PRD, arquitetura e política de dados.
+
+:::note Âmbito
+
+Os itens abaixo descrevem o **protótipo** e a intenção de produto. Não tratam ainda de contratos de API, origem real dos dados, regras legais por país ou desenho final de perfis de acesso.
+
+:::
+
+## Audiência e uso
+
+| Perfil | O que busca na trilha |
+|--------|------------------------|
+| **RH / People** | Acompanhar saúde de talentos, engajamento, performance, sucessão e ações pendentes. |
+| **Liderança executiva** | Ver riscos e tendências agregadas para priorizar investimentos em pessoas. |
+| **Gestores** | Entender evolução do time, gaps críticos e impacto de planos de desenvolvimento. |
+| **P.O** | Refinar jornadas B2B, permissões, critérios de aceite, dependências de dados e estados de exceção. |
+| **Produto / Engenharia** | Identificar requisitos de dados, permissões, integrações e observabilidade para produção. |
+
+## Proposta de valor
+
+**Transformar sinais dispersos de pessoas em decisões acionáveis.** A trilha `/hr` deve responder três perguntas:
+
+1. Onde há risco ou oportunidade relevante na organização?
+2. Quais talentos, squads ou áreas precisam de intervenção?
+3. Que evidência sustenta a decisão: performance, competências, PDI, Pulse, turnover, OKRs ou relatórios?
+
+## Capacidades no protótipo
+
+| Capacidade | Resultado esperado |
+|------------|--------------------|
+| **Overview executivo** | Resumo de KPIs de pessoas, alertas e tendências principais. |
+| **People Analytics** | Leitura de engajamento, turnover, distribuição de talentos e evolução por área. |
+| **Gestão de talentos** | Priorização de pessoas e grupos com base em performance, potencial e gaps. |
+| **Performance** | Consolidação de ciclos formais, prontidão de nível e evidências de evolução. |
+| **Relatórios** | Exportação ou leitura estruturada para stakeholders e rituais de governança. |
+
+## Hipóteses abertas
+
+| Hipótese | Validação necessária |
+|----------|----------------------|
+| RH precisa de uma visão executiva única para priorizar intervenções. | Entrevistas com RH/People e teste de tarefas com dados realistas. |
+| Dados individuais de `/app` podem alimentar leitura agregada em `/hr`. | Política de privacidade, consentimento, anonimização e regras de acesso. |
+| People Analytics reduz tempo de consolidação para decisões de talento. | Baseline atual, métrica de tempo, instrumento analítico e piloto B2B. |
+| Relatórios do protótipo representam rituais reais de governança. | Validação com stakeholders, cadência de reuniões e formatos exigidos. |
+
+## Relação com a trilha Colaborador
+
+| Origem individual (`/app`) | Leitura organizacional (`/hr`) |
+|----------------------------|--------------------------------|
+| Metas e PDI | Cobertura de desenvolvimento por área, competência ou nível. |
+| Pulse e feedback | Sinais de reconhecimento, colaboração e clima. |
+| Performance Review | Histórico de avaliação, prontidão e consistência entre ciclos. |
+| Skills e gaps | Mapa de lacunas críticas e oportunidades de capacitação. |
+| Projetos e squads | Contexto de alocação, impacto e dependências organizacionais. |
+
+## Pendências para produto real
+
+- Definir perfis de acesso: RH, gestor, executivo, administrador e leitura agregada.
+- Fechar regras de privacidade, anonimização e uso de dados sensíveis.
+- Mapear integrações com RHIS, BI, ATS, SSO e ferramentas de performance.
+- Definir métricas de sucesso B2B: ativação de contas, uso recorrente de relatórios, decisões tomadas após insights e redução de tempo para análise.
+- Documentar estados vazios, erros, dados incompletos e explicabilidade de insights.

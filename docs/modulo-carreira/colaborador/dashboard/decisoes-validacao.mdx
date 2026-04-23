@@ -1,0 +1,140 @@
+---
+sidebar_position: 2
+title: Dashboard — decisões e validação
+description: "Hipóteses, decisões de produto, eventos, riscos e critérios de aceite para o Dashboard /app."
+---
+
+# Dashboard — decisões e validação
+
+> Esta página transforma o Dashboard em material de PRD: decisões, hipóteses, eventos, critérios e pendências técnicas.
+
+<AnaliseProduto>
+
+### Problema específico
+
+Sem Dashboard, o colaborador precisa montar o próprio contexto entre Perfil, PDI, Pulse, Projetos, Squads, avaliações e conversas. Isso aumenta tempo até ação e reduz recorrência.
+
+O Dashboard resolve a primeira decisão da sessão: **“qual sinal de carreira ou trabalho pede ação agora?”**
+
+### North Star candidata
+
+| Métrica | Definição |
+|---------|-----------|
+| **Ações de desenvolvimento iniciadas a partir do Dashboard** | Número de sessões em `/app` que resultam em abertura ou conclusão de PDI, Pulse, check, próximo passo ou tela de contexto em até uma janela definida. |
+
+Esta métrica ainda é hipótese. Ela precisa de baseline, janela temporal e segmentação por tipo de ação.
+
+### Métricas de suporte
+
+| Área | Métrica | Por que importa |
+|------|---------|-----------------|
+| Ativação | `dashboard_viewed -> quick_action_clicked` | Mede se a entrada gera ação. |
+| Continuidade | `next_step_opened -> next_step_completed` | Mede se próximos passos são úteis. |
+| Desenvolvimento | `dashboard_viewed -> pdi_goal_updated` | Mede ligação com PDI. |
+| Feedback | `dashboard_viewed -> pulse_sent` | Mede uso do Dashboard como entrada de reconhecimento. |
+| Contexto | `current_epic_opened` ou navegação para Projetos/Squads | Mede se trabalho real ajuda a interpretar carreira. |
+
+### Decisões de produto
+
+| Decisão | Direção atual | Precisa fechar |
+|---------|---------------|----------------|
+| `/app` é a entrada da trilha Colaborador. | Não existe Dashboard duplicado na raiz `/`; a rota canônica é `/app`. | Confirmar redirecionamentos e analytics de aliases no PRD técnico. |
+| Dashboard prioriza ação, não análise profunda. | Ações rápidas e próximos passos vêm antes de exploração detalhada. | Regra de ordenação quando há múltiplas pendências. |
+| Métricas são sinais, não relatório. | Cartões mostram alocação, feedback, OKRs, sprints e certificações. | Fonte real, frequência de atualização e fallback para dado ausente. |
+| Épico em andamento dá contexto de trabalho. | O bloco mostra sprint, story points, prioridade e ETA. | Origem oficial: ferramenta de delivery, cadastro manual ou integração futura. |
+| Atividades recentes explicam mudança. | Feed mistura feedback, PDI, sprint, OKR, certificação e onboarding. | Taxonomia de eventos, retenção e ordenação. |
+
+### Contrato funcional inicial
+
+| Área | Requisito funcional |
+|------|---------------------|
+| Entrada | Ao acessar `/app`, o usuário vê Dashboard da trilha Colaborador. |
+| Ações rápidas | Cada ação navega para fluxo definido ou exibe estado indisponível com orientação. |
+| Próximos passos | Cada item possui estado, título, descrição curta, prazo quando aplicável e destino. |
+| Atividades recentes | Cada evento possui tipo, timestamp, texto e destino opcional. |
+| Métricas | Cada cartão possui rótulo, valor, contexto e comportamento de clique definido ou marcado como não clicável. |
+| Épico | O bloco exibe projeto, sprint, prioridade, progresso, stories, story points e ETA quando disponíveis. |
+
+### Requisitos não funcionais
+
+| Tema | Requisito |
+|------|-----------|
+| Performance | Dashboard deve carregar estrutura inicial mesmo com dados parciais. |
+| Observabilidade | Eventos críticos devem registrar usuário, rota, bloco, ação, timestamp e resultado. |
+| Acessibilidade | Botões, cards clicáveis e filtros precisam de nome acessível e foco visível. |
+| Privacidade | Eventos de feedback e avaliação não podem expor conteúdo sensível em analytics. |
+| Resiliência | Falha em uma fonte de dados não deve derrubar a página inteira. |
+
+### Experiência por cenário
+
+| Cenário | Como o Dashboard deve se comportar | Risco se falhar |
+|---------|------------------------------------|-----------------|
+| Usuário volta após alguns dias | Atividades recentes mostram mudanças desde a última visita; próximos passos priorizam pendências. | A pessoa não percebe valor recorrente e abandona o módulo. |
+| Usuário precisa atualizar PDI | Ação rápida e próximo passo levam direto ao PDI, com contexto do ciclo. | O PDI vira destino escondido e gaps ficam sem plano. |
+| Usuário recebeu feedback | Cartão de feedback e atividade recente apontam para Pulse ou avaliação. | Feedback fica isolado e não alimenta desenvolvimento. |
+| Usuário está em sprint crítica | Épico em andamento explica entrega, prioridade, progresso e ETA. | Carreira parece separada do trabalho real. |
+| Usuário vai para 1:1 | Próximos passos e atividades recentes ajudam a preparar conversa com o gestor. | A conversa depende de memória e notas espalhadas. |
+
+### Validações recomendadas
+
+| Hipótese | Método | Sinal de sucesso |
+|----------|--------|------------------|
+| O Dashboard reduz tempo até a próxima ação. | Teste cronometrado: “o que você faria agora?”. | Usuário escolhe ação correta em até 60 segundos e explica o motivo. |
+| Ações rápidas cobrem fluxos recorrentes. | Análise de clique por tipo de ação. | Cliques concentram em PDI, Pulse, check e agenda; baixa navegação exploratória. |
+| Atividades recentes ajudam a entender evolução. | Entrevista com replay de tela. | Usuário cita PDI, feedback, sprint ou certificação com contexto. |
+| Épico conecta trabalho e carreira. | Tarefa: “explique como sua entrega atual aparece na carreira”. | Usuário relaciona épico a meta, skill, feedback ou projeto. |
+| Próximos passos aumentam retorno. | Coorte de usuários com próximo passo aberto vs concluído. | Maior retorno e conclusão entre quem abre próximo passo. |
+
+### Eventos mínimos
+
+| Evento | Quando dispara | Propriedades mínimas |
+|--------|----------------|---------------------|
+| `dashboard_viewed` | Renderização inicial da rota `/app`. | `user_id`, `role`, `timestamp`, `data_status` |
+| `quick_action_clicked` | Clique em ação rápida. | `action_type`, `destination`, `available`, `timestamp` |
+| `next_step_opened` | Clique em próximo passo. | `next_step_id`, `status`, `due_date`, `destination` |
+| `next_step_completed` | Conclusão confirmada do próximo passo. | `next_step_id`, `completion_source`, `timestamp` |
+| `activity_item_opened` | Clique em item do feed. | `activity_id`, `activity_type`, `source_domain`, `destination` |
+| `current_epic_opened` | Clique no épico ou projeto relacionado. | `project_id`, `epic_id`, `sprint_id`, `progress` |
+| `dashboard_metric_clicked` | Clique em cartão de métrica. | `metric_type`, `value_bucket`, `destination` |
+
+### Critérios de aceite
+
+```gherkin
+Funcionalidade: Dashboard do Colaborador
+
+  Cenário: Ver próxima ação ao abrir o módulo
+    Dado que o colaborador possui pelo menos um próximo passo ativo
+    Quando ele acessa /app
+    Então o Dashboard mostra o próximo passo com estado, título, contexto e destino
+
+  Cenário: Acionar atualização de PDI
+    Dado que a ação "Atualizar PDI" está disponível
+    Quando o colaborador clica na ação
+    Então o sistema navega para /app/pdi ou para o fluxo de PDI definido
+
+  Cenário: Consultar contexto de entrega
+    Dado que há épico em andamento
+    Quando o Dashboard é carregado
+    Então o bloco mostra projeto, sprint, prioridade, progresso e ETA
+
+  Cenário: Carregar dados parciais
+    Dado que a fonte de atividades recentes falha
+    Quando o Dashboard é carregado
+    Então os demais blocos continuam disponíveis
+    E a área de atividades mostra estado de erro recuperável
+```
+
+### Rastreabilidade
+
+| Destino | Relação |
+|---------|---------|
+| [Visão geral](../perfil-visao-geral) | Expande identidade, IA sobre pulses e gaps em cartões. |
+| [PDI](../perfil-pdi) (`/app/pdi`) | Metas e ciclos citados em **Próximos passos** e no feed. |
+| [Pulse](../pulse) | Contadores e ação **Dar Feedback**. |
+| [Squads](../squads), [Projetos](../projetos) | Contexto de alocação e impacto nos cartões. |
+
+### Limitações do protótipo
+
+Dados são demonstrativos (`UserContext`). A nomenclatura do épico diverge entre blocos: no cartão superior aparece **Autenticação & Autorização**; em Atividades recentes aparece **OAuth 2.1**. Tratar como *copy* de demonstração até fechar nomenclatura no PRD.
+
+</AnaliseProduto>

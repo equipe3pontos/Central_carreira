@@ -1,0 +1,8 @@
+{
+  "label": "Skills",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "Matriz de competências, hard skills, soft skills e gaps — diagnóstico de evolução do colaborador."
+  }
+}

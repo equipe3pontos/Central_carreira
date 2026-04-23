@@ -1,0 +1,289 @@
+---
+sidebar_position: 5
+title: Squads (`/app/squads`)
+description: "Squads e organograma (BU, tribes, squads) — lista de equipa e hierarquia no protótipo (/app/squads)."
+---
+
+# Squads & organograma (`/app/squads`)
+
+<AnaliseProduto>
+
+### Finalidade
+
+A rota **`/app/squads`** expõe a **estrutura de equipas** (*squads*) em lista e, na *tab* **Organograma**, a hierarquia **Business Unit → Tribe → Squad** (*Product & Technology*, tribos e *squads* aninhados). Na **lista plana**, o foco é **membros por cartão**; no organograma, o foco é **contexto estratégico** e contagens agregadas. Complementa [Projetos](./projetos) e o [Dashboard](./dashboard).
+
+### Rastreabilidade
+
+| Destino | Relação |
+|---------|---------|
+| [Dashboard](./dashboard) | Cartão de alocação e *squads* citados remetem a este contexto |
+| [Visão geral](./perfil-visao-geral) | *Squad* e produto no «momento atual» alinham com o *squad* marcado como **Seu Squad** quando aplicável |
+| [Projetos](./projetos) | Equipas de projeto referem *squads* e áreas (ex.: Squad Plataforma, Squad Frontend) |
+| [RH Tech People](../rh-tech-people) | **Criar Squad** redireciona responsabilidade operacional para RH (*copy* do mock) até a funcionalidade existir |
+
+### Limitações do protótipo
+
+Contagens de membros por *squad* ou totais podem **diferir** entre a *tab* **Squads** (lista detalhada) e a *tab* **Organograma** (vista agregada) — **dois cortes do mesmo cenário de demonstração**, não uma regra de produto final. **Criar Squad** não implementa formulário nem persistência no protótipo: exibe estado **«em desenvolvimento»** e orienta contacto com **RH Tech People**. Filtros e possível *layout* gráfico adicional do organograma são *placeholders*.
+
+</AnaliseProduto>
+
+<ReferenciaProtótipo>
+
+### Cabeçalho e navegação interna
+
+| Elemento | Texto / controlo (protótipo) |
+|----------|------------------------------|
+| Título | **Squads & Organograma** |
+| Parágrafo de contexto | Entenda a estrutura organizacional e como os squads se conectam. |
+| Definição curta | *Squad é onde tudo acontece*: grupo autónomo focado em valor para o cliente. |
+
+| *Tab* | Função declarada |
+|-------|-------------------|
+| **Squads** | Lista plana com cartões e membros *(secções «Tab Squads» e inventário)* |
+| **Organograma** | BU, tribos, *squads* aninhados e métricas *(secção «Tab Organograma»)* |
+
+| Ação global | **Criar Squad** |
+
+---
+
+### Subfluxo **Criar Squad** *(placeholder)*
+
+Acionado pelo botão **Criar Squad** (*tabs* **Squads** e **Organograma**). No protótipo, abre uma superfície (*modal* ou página) sem formulário editável.
+
+| Elemento | Texto (*copy*) |
+|----------|----------------|
+| Título | **Criar Novo Squad** |
+| Corpo | Funcionalidade em desenvolvimento. Em breve você poderá criar e gerenciar squads diretamente por aqui. |
+| Orientação | Por enquanto, entre em contato com o **RH Tech People** para criação de novos squads. |
+| Ação primária | **Entrar em Contato com RH** |
+
+:::note Produto
+
+O destino do botão **Entrar em Contato com RH** (e-mail, *deep link* para `/hr`, *ticket*) **não** está fixado nesta documentação — apenas a intenção de escalonar para [RH Tech People](../rh-tech-people).
+
+:::
+
+---
+
+### Tab **Organograma** · hierarquia BU → Tribe → Squad
+
+| Elemento | Texto (*copy*) |
+|----------|----------------|
+| Título da vista | **Organograma** |
+| Ação | **Criar Squad** |
+
+#### Business unit · **Product & Technology**
+
+| Campo | Valor (mock) |
+|-------|----------------|
+| **Tipo** | **Business Unit** |
+| **Nome** | **Product & Technology** |
+| **Descrição** | Business Unit responsável por toda estratégia de produto e engenharia da empresa |
+| **VP of Engineering** | **Carolina Martins** · VP of Engineering |
+
+##### Indicadores da BU
+
+| Métrica | Valor |
+|---------|-------|
+| **Total headcount** | **47** |
+| **Tribes ativas** | **4** |
+| **Squads totais** | **7** |
+
+---
+
+#### Tribes da business unit
+
+##### Platform Tribe — **Sua Tribe**
+
+| Campo | Valor |
+|-------|--------|
+| **Descrição** | Tribe focada em infraestrutura, plataforma e *core tech* |
+| **Lead** | **Rafael Mendes** |
+| **Pessoas** | **12** |
+| **Âmbito** | Infrastructure & Platform |
+| **Squads na tribe** | **2** |
+
+**Squads**
+
+| Squad | Subtítulo / foco | Estado | Lead | Membros |
+|-------|------------------|--------|------|---------|
+| **Squad Plataforma** · **Seu Squad** | Frontend Platform & Architecture | Squad **Ativo** | Marcelo Henrique Machado | **7** |
+| **Squad Infra** | DevOps, Cloud & Observability | Squad **Ativo** | Bruno Cardoso | **5** |
+
+##### Product Tribe
+
+| Campo | Valor |
+|-------|--------|
+| **Descrição** | Tribe focada em experiência do usuário e *features* do produto |
+| **Lead** | **Amanda Silva** |
+| **Pessoas** | **18** |
+| **Âmbito** | Product & User Experience |
+| **Squads na tribe** | **3** |
+
+**Squads**
+
+| Squad | Subtítulo / foco | Estado | Lead | Membros |
+|-------|------------------|--------|------|---------|
+| **Squad Core** | Core Features & UX | Squad **Ativo** | Paula Santos | **6** |
+| **Squad Growth** | Acquisition & Onboarding | Squad **Ativo** | Amanda Silva | **5** |
+| **Squad Retention** | Engagement & Retention | **Normalizando** | Juliana Martins | **7** |
+
+##### Data Tribe
+
+| Campo | Valor |
+|-------|--------|
+| **Descrição** | Tribe focada em dados, *analytics* e inteligência artificial |
+| **Lead** | **Ricardo Oliveira** |
+| **Pessoas** | **9** |
+| **Âmbito** | Data & Analytics |
+| **Squads na tribe** | **2** |
+
+**Squads**
+
+| Squad | Subtítulo / foco | Estado | Lead | Membros |
+|-------|------------------|--------|------|---------|
+| **Squad Analytics** | People Analytics & BI | **Em formação** | Ricardo Oliveira | **4** |
+| **Squad AI/ML** | Machine Learning & Insights | Squad **Ativo** | Beatriz Costa | **5** |
+
+##### Design Tribe
+
+| Campo | Valor |
+|-------|--------|
+| **Descrição** | Tribe focada em design, experiência e sistemas de design |
+| **Lead** | **Marina Silva** |
+| **Pessoas** | **8** |
+| **Âmbito** | Design & User Research |
+| **Squads na tribe** | **2** |
+
+**Squads**
+
+| Squad | Subtítulo / foco | Estado | Lead | Membros |
+|-------|------------------|--------|------|---------|
+| **Squad Design System** | Design Tokens & Components | Squad **Ativo** | Marina Silva | **4** |
+| **Squad Research** | User Research & Testing | Squad **Ativo** | Patricia Rocha | **4** |
+
+---
+
+#### Estrutura organizacional *(glossário no protótipo)*
+
+| Nível | Definição (*copy*) |
+|-------|---------------------|
+| **Business Unit (BU)** | Maior unidade organizacional responsável por uma área estratégica da empresa |
+| **Tribe** | Agrupamento de *squads* com objetivos e domínios relacionados, geralmente com **40–150** pessoas |
+| **Squad** | *Time* multidisciplinar autónomo com **5–9** pessoas focado numa missão específica |
+
+:::note Âmbito do glossário
+
+No *copy* acima, as **tribes** do organograma têm **12–18** pessoas no mock — inferiores ao intervalo 40–150: trata-se de **cenário compacto** para UI, não de regra estrita.
+
+:::
+
+---
+
+### Tab **Squads** · lista plana
+
+### Pesquisa, filtros e paginação
+
+| Controlo | *Copy* |
+|----------|--------|
+| Pesquisa | **Buscar por squad…** |
+| **Status** | **Todos os status** |
+| **Tipo** | **Todos os tipos** |
+| Paginação | **Exibindo 1–5 de 5** · **Página 1 de 1** |
+
+---
+
+### Inventário de squads *(mock)*
+
+#### Squad Plataforma — **Seu Squad**
+
+| Campo | Valor |
+|-------|--------|
+| **Estado** | Squad **Ativo** · selo **Seu Squad** |
+| **ID** · **Coordenador** | **SQUAD-1** · **Rafael Mendes** |
+| **Descrição** | Responsável pela infraestrutura e plataforma central da Talent Platform |
+| **Metadados** | Atualizado por Rafael Mendes em **06/12/2023** · **7** membros |
+
+**Membros**
+
+| Iniciais | Nome | Papel | Nível |
+|----------|------|-------|-------|
+| RM | Rafael Mendes | Coordenador · Engineering Manager | — |
+| MM | Marcelo Henrique Machado | Senior Software Engineer | L5 |
+| LA | Lucas Almeida | Software Engineer | L3 |
+| AR | Ana Rodrigues | Product Manager | L4 |
+| JF | Juliana Ferreira | Software Engineer | L4 |
+| PO | Pedro Oliveira | UX/UI Designer | L3 |
+| CS | Camila Santos | QA Engineer | L3 |
+
+#### Squad Core
+
+| Campo | Valor |
+|-------|--------|
+| **Estado** | Squad **Ativo** |
+| **ID** · **Coordenador** | **SQUAD-2** · **Paula Santos** |
+| **Descrição** | Desenvolvimento das funcionalidades principais do produto |
+| **Metadados** | Atualizado por Paula Santos em **06/12/2023** · **3** membros |
+
+**Membros**
+
+| Iniciais | Nome | Papel | Nível |
+|----------|------|-------|-------|
+| PS | Paula Santos | Coordenadora · Tech Lead | — |
+| JS | João Silva | Software Engineer | L4 |
+| MC | Marina Costa | UX Designer | L3 |
+
+#### Squad Growth
+
+| Campo | Valor |
+|-------|--------|
+| **Estado** | Squad **Ativo** |
+| **ID** · **Coordenador** | **SQUAD-3** · **Amanda Silva** |
+| **Descrição** | Crescimento e aquisição de novos usuários |
+| **Metadados** | Atualizado por Amanda Silva em **06/12/2023** · **4** membros |
+
+**Membros**
+
+| Iniciais | Nome | Papel | Nível |
+|----------|------|-------|-------|
+| AS | Amanda Silva | Coordenadora · Product Manager | — |
+| CL | Carlos Lima | Software Engineer | L4 |
+| FC | Fernanda Costa | UX Designer | L3 |
+| RS | Rodrigo Santos | Software Engineer | L3 |
+
+#### Squad Analytics
+
+| Campo | Valor |
+|-------|--------|
+| **Estado** | **Em formação** |
+| **ID** · **Coordenador** | **SQUAD-4** · **Ricardo Oliveira** |
+| **Descrição** | Business Intelligence e People Analytics |
+| **Metadados** | Atualizado por Ricardo Oliveira em **06/12/2023** · **3** membros |
+
+**Membros**
+
+| Iniciais | Nome | Papel | Nível |
+|----------|------|-------|-------|
+| RO | Ricardo Oliveira | Coordenador · Data Lead | — |
+| BL | Beatriz Lima | Data Analyst | L4 |
+| LM | Lucas Martins | Data Engineer | L4 |
+
+#### Squad Infra
+
+| Campo | Valor |
+|-------|--------|
+| **Estado** | Squad **Ativo** |
+| **ID** · **Coordenador** | **SQUAD-5** · **Bruno Cardoso** |
+| **Descrição** | DevOps, Cloud & Observabilidade |
+| **Metadados** | Atualizado por Bruno Cardoso em **06/12/2023** · **4** membros |
+
+**Membros**
+
+| Iniciais | Nome | Papel | Nível |
+|----------|------|-------|-------|
+| BC | Bruno Cardoso | Coordenador · DevOps Lead | — |
+| TS | Thiago Silva | SRE Engineer | L5 |
+| PR | Patricia Rocha | Cloud Engineer | L4 |
+| GS | Gabriel Souza | DevOps Engineer | L3 |
+
+</ReferenciaProtótipo>

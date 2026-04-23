@@ -1,0 +1,435 @@
+@import './hunter-fonts.css';
+
+/**
+ * Tokens do Hunter Talent Platform — ver `Módulo de Carreira (2)/AGENTS.md` (Design System)
+ * (referência visual alinhada ao Figma quando existir captura no repositório).
+ */
+:root {
+  /* Base escura ligeiramente menos “black out” que #09090a */
+  --hunter-bg: #121214;
+  --hunter-bg-secondary: #18181b;
+  --hunter-bg-tertiary: #1f1f23;
+  --hunter-border: #2c2c2d;
+  --hunter-text: #fdfdfd;
+  --hunter-text-secondary: #9c9c9c;
+  --hunter-accent: #12e419;
+  --hunter-accent-hover: #10c517;
+  --hunter-blue: #3895ff;
+
+  --ifm-font-family-base: 'Inter', system-ui, sans-serif;
+  --ifm-heading-font-family: 'Satoshi', 'Outfit', system-ui, sans-serif;
+  --ifm-font-weight-semibold: 600;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(18, 228, 25, 0.12);
+}
+
+/* Tema escuro alinhado ao produto (principal) */
+[data-theme='dark'] {
+  --ifm-background-color: var(--hunter-bg);
+  --ifm-navbar-background-color: var(--hunter-bg-secondary);
+  --ifm-footer-background-color: #000000;
+  --ifm-card-background-color: var(--hunter-bg-secondary);
+  --ifm-font-color-base: var(--hunter-text);
+  --ifm-font-color-secondary: var(--hunter-text-secondary);
+  --ifm-heading-color: var(--hunter-text);
+  --ifm-hr-background-color: var(--hunter-border);
+  --ifm-toc-border-color: var(--hunter-border);
+  --ifm-table-border-color: var(--hunter-border);
+  --ifm-color-emphasis-200: var(--hunter-border);
+
+  --ifm-color-primary: var(--hunter-accent);
+  --ifm-color-primary-dark: var(--hunter-accent-hover);
+  --ifm-color-primary-darker: #0ea814;
+  --ifm-color-primary-darkest: #0c9012;
+  --ifm-color-primary-light: #3ae940;
+  --ifm-color-primary-lighter: #5aed55;
+  --ifm-color-primary-lightest: #7ef078;
+
+  --ifm-menu-color: var(--hunter-text-secondary);
+  --ifm-menu-color-active: var(--hunter-accent);
+}
+
+/*
+ * Modo claro — paleta Hunter + Infima.
+ * Importante: em :root as variáveis --hunter-* são escuras; sem redefinição aqui,
+ * blocos (ex. DocSections) ficam com fundo #0f0f10 e texto escuro do tema claro
+ * → contraste nulo (“tela preta” / conteúdo invisível).
+ */
+[data-theme='light'] {
+  --hunter-bg: #eef0f4;
+  --hunter-bg-secondary: #ffffff;
+  --hunter-bg-tertiary: #e4e7ec;
+  --hunter-border: #cfd4dd;
+  --hunter-text: #121418;
+  --hunter-text-secondary: #5a6170;
+  --hunter-accent: #0f9a14;
+  --hunter-accent-hover: #0c8011;
+  --hunter-blue: #2563c7;
+
+  --ifm-background-color: var(--hunter-bg);
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-footer-background-color: #0a0a0b;
+  --ifm-card-background-color: var(--hunter-bg-secondary);
+  --ifm-font-color-base: var(--hunter-text);
+  --ifm-font-color-secondary: var(--hunter-text-secondary);
+  --ifm-heading-color: var(--hunter-text);
+  --ifm-hr-background-color: var(--hunter-border);
+  --ifm-toc-border-color: var(--hunter-border);
+  --ifm-table-border-color: var(--hunter-border);
+  --ifm-color-emphasis-200: var(--hunter-border);
+
+  --ifm-color-primary: var(--hunter-accent);
+  --ifm-color-primary-dark: var(--hunter-accent-hover);
+  --ifm-color-primary-darker: #0a6810;
+  --ifm-color-primary-darkest: #08520d;
+  --ifm-color-primary-light: #3cb342;
+  --ifm-color-primary-lighter: #5dc062;
+  --ifm-color-primary-lightest: #8fd392;
+
+  --ifm-menu-color: var(--hunter-text-secondary);
+  --ifm-menu-color-active: var(--hunter-accent);
+
+  --ifm-heading-font-family: 'Satoshi', 'Outfit', system-ui, sans-serif;
+  --docusaurus-highlighted-code-line-bg: rgba(15, 154, 20, 0.12);
+}
+
+[data-theme='light'] .markdown .theme-admonition {
+  --ifm-alert-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Marca (PNG 3pts) na navbar */
+.navbar__logo img {
+  height: 2rem;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Doc sidebar refinamento */
+.menu__link--active:not(.menu__link--sublist) {
+  color: var(--hunter-accent);
+}
+
+/* Rodapé — sempre preto + texto branco (Infima sobrescrevia links com --ifm-link-color) */
+.footer {
+  border-top: 1px solid var(--hunter-border);
+  padding-top: 2rem;
+  padding-bottom: 1.75rem;
+  background-color: #000000 !important;
+  --ifm-footer-color: #ffffff;
+  --ifm-footer-link-color: #ffffff;
+  --ifm-footer-title-color: #ffffff;
+}
+
+.footer__title {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem !important;
+  color: #ffffff !important;
+}
+
+/* Links numa linha (menos altura no rodapé) */
+.footer__items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+
+.footer__item {
+  margin-top: 0 !important;
+}
+
+.footer__link-item {
+  font-size: 0.875rem;
+  transition: color 0.15s ease;
+  color: #ffffff !important;
+}
+
+.footer__link-item:hover {
+  text-decoration: none;
+  color: var(--hunter-accent) !important;
+}
+
+.footer__copyright {
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.8125rem;
+  margin-top: 1.25rem !important;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hunter-border);
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/*
+ * Admonitions (`:::note`, `:::tip`, …) — Infima `.alert` + tema Hunter.
+ * Sem isto, no escuro o `:::note` (alert--secondary) pode parecer “sem caixa”.
+ * Conteúdo interior continua MDX completo (negrito, listas, `code`, links).
+ */
+.markdown .theme-admonition {
+  --ifm-alert-border-radius: 10px;
+  --ifm-alert-border-width: 1px;
+  --ifm-alert-border-left-width: 4px;
+  --ifm-alert-shadow: 0 1px 10px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='dark'] .markdown .theme-admonition {
+  --ifm-alert-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme='dark'] .markdown .alert--secondary {
+  --ifm-alert-background-color: rgba(56, 149, 255, 0.1);
+  --ifm-alert-background-color-highlight: rgba(56, 149, 255, 0.18);
+  --ifm-alert-foreground-color: var(--hunter-text);
+  --ifm-alert-border-color: var(--hunter-blue);
+}
+
+[data-theme='dark'] .markdown .alert--success {
+  --ifm-alert-background-color: rgba(18, 228, 25, 0.1);
+  --ifm-alert-background-color-highlight: rgba(18, 228, 25, 0.2);
+  --ifm-alert-foreground-color: var(--hunter-text);
+  --ifm-alert-border-color: var(--hunter-accent);
+}
+
+[data-theme='dark'] .markdown .alert--info {
+  --ifm-alert-background-color: rgba(84, 199, 236, 0.12);
+  --ifm-alert-background-color-highlight: rgba(84, 199, 236, 0.22);
+  --ifm-alert-foreground-color: var(--hunter-text);
+  --ifm-alert-border-color: #54c7ec;
+}
+
+[data-theme='dark'] .markdown .alert--warning {
+  --ifm-alert-background-color: rgba(255, 186, 0, 0.1);
+  --ifm-alert-background-color-highlight: rgba(255, 186, 0, 0.22);
+  --ifm-alert-foreground-color: #ffe8b3;
+  --ifm-alert-border-color: #ffba00;
+}
+
+[data-theme='dark'] .markdown .alert--danger {
+  --ifm-alert-background-color: rgba(250, 56, 62, 0.12);
+  --ifm-alert-background-color-highlight: rgba(250, 56, 62, 0.22);
+  --ifm-alert-foreground-color: #fecaca;
+  --ifm-alert-border-color: #fa383e;
+}
+
+[data-theme='light'] .markdown .alert--secondary {
+  --ifm-alert-background-color: rgba(56, 149, 255, 0.08);
+  --ifm-alert-border-color: #2b7fd4;
+  --ifm-alert-foreground-color: #1a1a1a;
+}
+
+/* Tema claro — caixas mais “pastel” (hubs tipo StackSpot): fundo suave + borda lateral */
+[data-theme='light'] .markdown .alert--success {
+  --ifm-alert-background-color: rgba(18, 228, 25, 0.09);
+  --ifm-alert-border-color: #16a31b;
+  --ifm-alert-foreground-color: #1a1f1a;
+}
+
+[data-theme='light'] .markdown .alert--danger {
+  --ifm-alert-background-color: rgba(250, 56, 62, 0.08);
+  --ifm-alert-border-color: #e11d24;
+  --ifm-alert-foreground-color: #3d1818;
+}
+
+[data-theme='light'] .markdown .alert--info {
+  --ifm-alert-background-color: rgba(84, 199, 236, 0.1);
+  --ifm-alert-border-color: #2a9ec4;
+  --ifm-alert-foreground-color: #1a2a33;
+}
+
+[data-theme='light'] .markdown .alert--warning {
+  --ifm-alert-background-color: rgba(255, 186, 0, 0.1);
+  --ifm-alert-border-color: #d97706;
+  --ifm-alert-foreground-color: #3d2e12;
+}
+
+/*
+ * Padrões inspirados em hubs tipo StackSpot — apenas estrutura/espçamento e realces;
+ * cores: sempre tokens Hunter (--hunter-accent, --hunter-blue, --hunter-text…).
+ */
+
+/* Breadcrumbs: último segmento em “pill” (fundo acento suave + texto acento) */
+.theme-doc-breadcrumbs .breadcrumbs__item--active .breadcrumbs__link {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(18, 228, 25, 0.14);
+  color: var(--hunter-accent) !important;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.theme-doc-breadcrumbs .breadcrumbs__item--active .breadcrumbs__link:hover {
+  background: rgba(18, 228, 25, 0.22);
+}
+
+[data-theme='light'] .theme-doc-breadcrumbs .breadcrumbs__item--active .breadcrumbs__link {
+  background: rgba(15, 154, 20, 0.12);
+  color: var(--hunter-accent) !important;
+}
+
+[data-theme='light'] .theme-doc-breadcrumbs .breadcrumbs__item--active .breadcrumbs__link:hover {
+  background: rgba(15, 154, 20, 0.18);
+}
+
+/* Primeiro parágrafo após H1 — destaque tipográfico leve, sem barra */
+.theme-doc-markdown.markdown > h1:first-of-type + p {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  padding-left: 0;
+  border-left: none;
+  color: var(--ifm-font-color-secondary);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/*
+ * Corpo da doc: Infima força o 1.º H1 a 3rem e H2 diretos a 2rem — muito grande em leitura longa.
+ * Escala mais próxima de hubs tipo StackSpot (corpo ~15px + títulos proporcionais).
+ */
+.theme-doc-markdown.markdown {
+  padding-bottom: 2rem;
+  max-width: 52rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.theme-doc-markdown.markdown h1:first-child {
+  --ifm-h1-font-size: 2.25rem;
+}
+
+.theme-doc-markdown.markdown > h2 {
+  --ifm-h2-font-size: 1.5rem;
+}
+
+.theme-doc-markdown.markdown > h3 {
+  --ifm-h3-font-size: 1.25rem;
+}
+
+/*
+ * Introdução após H1 com barra lateral (opcional) — alinhado a “task” pages tipo StackSpot:
+ * usar `> frase de resumo` em Markdown logo abaixo do título.
+ */
+.theme-doc-markdown.markdown > h1:first-of-type + blockquote {
+  margin-top: 0;
+  margin-bottom: 1.35rem;
+  padding: 0 0 0 1rem;
+  border-left: 3px solid var(--hunter-border);
+  color: var(--ifm-font-color-secondary);
+  font-size: 1rem;
+  line-height: 1.55;
+  box-shadow: none;
+}
+
+.theme-doc-markdown.markdown > h1:first-of-type + blockquote p {
+  margin-bottom: 0;
+}
+
+/* Procedimentos: respiro entre secção e lista numerada */
+.theme-doc-markdown.markdown > h2 + ol {
+  margin-top: 0.35rem;
+}
+
+/* Blocos de apoio após passos — Infima já separa `.alert`; reforço suave */
+.theme-doc-markdown.markdown > ol + .theme-admonition,
+.theme-doc-markdown.markdown > ul + .theme-admonition {
+  margin-top: 1rem;
+}
+
+/* Sidebar: categorias de nível 1 — rótulos em caps discretos (cores Hunter) */
+li.theme-doc-sidebar-item-category-level-1 .menu__list-item-collapsible > .menu__link {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--hunter-text-secondary);
+}
+
+li.theme-doc-sidebar-item-category-level-1 .menu__list-item-collapsible > .menu__link:hover {
+  color: var(--hunter-text);
+}
+
+/* TOC à direita — sem barra vertical, ligeiramente mais compacto */
+.table-of-contents {
+  padding-left: 0.5rem;
+  border-left: none;
+  font-size: 0.875rem;
+}
+
+.table-of-contents__link--active {
+  color: var(--hunter-accent) !important;
+}
+
+/*
+ * Tabelas GFM — aspeto “planilha leve” (referência StackSpot): sem moldura forte
+ * nem listras alternadas; só separador horizontal entre linhas + cabeçalho discreto.
+ */
+.theme-doc-markdown .markdown table {
+  --ifm-table-border-color: transparent;
+  border: none !important;
+  border-collapse: collapse;
+  box-shadow: none !important;
+  background: transparent;
+  width: 100%;
+}
+
+.theme-doc-markdown .markdown thead {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+[data-theme='light'] .theme-doc-markdown .markdown thead {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.theme-doc-markdown .markdown thead tr {
+  border-bottom: 1px solid var(--hunter-border);
+}
+
+.theme-doc-markdown .markdown tbody tr {
+  border-bottom: 1px solid var(--hunter-border);
+  background: transparent !important;
+}
+
+.theme-doc-markdown .markdown tbody tr:nth-child(2n) {
+  background: transparent !important;
+}
+
+.theme-doc-markdown .markdown tbody tr:last-child {
+  border-bottom: none;
+}
+
+.theme-doc-markdown .markdown th,
+.theme-doc-markdown .markdown td {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  vertical-align: top;
+}
+
+.theme-doc-markdown .markdown th {
+  font-weight: 600;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+.theme-doc-markdown .markdown td {
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+
+/* Mermaid (@docusaurus/theme-mermaid) */
+.theme-doc-markdown .mermaid {
+  margin: 1.35rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--hunter-border);
+  background: var(--hunter-bg-secondary);
+}
+
+.theme-doc-markdown .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}

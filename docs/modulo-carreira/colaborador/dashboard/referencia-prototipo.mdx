@@ -1,0 +1,110 @@
+---
+sidebar_position: 3
+title: Dashboard — referência do protótipo
+description: "Imagem, copy e inventário do Dashboard /app no protótipo."
+---
+
+# Dashboard — referência do protótipo
+
+> Esta página registra o que aparece no protótipo da rota `/app`. Números, nomes e *copy* são referência de discovery, não contrato de produção.
+
+<ReferenciaProtótipo>
+
+![Dashboard da jornada Colaborador — métricas, ações rápidas, épico em curso, atividades recentes e próximos passos](/img/dashboard-jornada-colaborador.png)
+
+Imagem: `static/img/dashboard-jornada-colaborador.png`.
+
+### Leitura do mock
+
+| Área | Papel na tela |
+|------|---------------|
+| Faixa de boas-vindas | Situa o usuário no módulo e reforça o objetivo de carreira/desenvolvimento. |
+| Cartões de métricas | Mostram sinais de estado: alocação, feedback, OKRs, sprints e certificações. |
+| Ações rápidas | Dão acesso a fluxos recorrentes sem passar por navegação lateral. |
+| Épico em andamento | Conecta carreira a entrega concreta. |
+| Atividades recentes | Mostram memória do ciclo. |
+| Próximos passos | Transformam sinais em ação. |
+
+### Faixa de boas-vindas
+
+| Elemento | Texto (protótipo) |
+|----------|-------------------|
+| Saudação | **Bem-vindo, Marcelo** |
+| Subtítulo | **Gerencie sua carreira e seu desenvolvimento técnico com o Hunter** |
+
+### Cartões de métricas
+
+| Cartão | Conteúdo mostrado |
+|--------|-------------------|
+| **Alocação** | **Squad Plataforma** · **TALENT PLATFORM** · estado **Ativo** |
+| **Feedback 360°** | **8** recebidos · **12** enviados · **Ciclo atual** |
+| **OKRs** | **78%** · *Progresso do Q1 2026* |
+| **Sprints** | **3** · *Sprints ativos em squads* |
+| **Certificações** | **5** · *Credenciais obtidas* |
+
+### Ações rápidas
+
+| Ação | Descrição |
+|------|-----------|
+| **Dar Feedback** | Envie um feedback 360° a um colega |
+| **Atualizar PDI** | Plano de Desenvolvimento Individual |
+| **Check-in Semanal** | Registre seu progresso e bloqueios |
+| **Daily Standup** | Squad Plataforma — Hoje, 09:30 · 15min |
+
+### Épico em andamento
+
+O bloco funciona como ponte entre carreira e execução. Ele não substitui uma ferramenta de gestão de projetos.
+
+| Campo | Valor (protótipo) |
+|-------|-------------------|
+| Contexto temporal / projeto | **Q1 2026** · **TP-42** · **TALENT PLATFORM** |
+| Nome | **Autenticação & Autorização** |
+| Sprint | **Sprint 7** |
+| Prioridade | Alta (**High**) |
+| Progresso do épico | **65%** |
+| *Stories* | **13** Done · **5** In Progress · **2** To Do |
+| *Story Points* | **34 / 52** |
+| ETA | **21 Mar 2026** |
+
+:::note Consistência do mock
+
+No bloco **Atividades recentes**, o mesmo épico aparece como **OAuth 2.1**; no cartão superior usa **Autenticação & Autorização**. Tratar como *copy* de demonstração até fechar nomenclatura no PRD.
+
+:::
+
+### Atividades recentes
+
+Lista temporal com carimbo ISO 8601. Os eventos misturam domínios diferentes; produção precisa definir taxonomia.
+
+| Tipo inferido | Evento | `timestamp` |
+|---------------|--------|-------------|
+| Feedback | Feedback 360° recebido de Ana Rodrigues — Excelente comunicação no projeto TALENT PLATFORM | `2026-03-05T10:00:00Z` |
+| PDI | Meta PDI "Certificação AWS SAA" atualizada: progresso 15% → 20% | `2026-03-05T07:00:00Z` |
+| Sprint | Sprint 7 Review concluída — Squad Plataforma: 94% de entrega (39/42 story points) | `2026-03-04T12:00:00Z` |
+| OKR | OKR atualizado — Reduzir latência API: P95 chegou a 285ms (meta: 270ms) | `2026-03-02T12:00:00Z` |
+| Projeto | Épico TP-42 "Autenticação OAuth 2.1" iniciado — Sprint 7 do projeto TALENT PLATFORM | `2026-02-26T12:00:00Z` |
+| Check-in | Check-in semanal enviado — Sprint 6 finalizada com 97% de entrega | `2026-02-19T12:00:00Z` |
+| Certificação | Certificação AWS Cloud Practitioner concluída — Score 892/1000 | `2026-02-12T12:00:00Z` |
+| 1:1 | 1:1 com Rafael Mendes — Definição de metas Q1 2026 e plano **L5 → L6** | `2026-02-05T12:00:00Z` |
+| PDI | PDI Q1 2026 criado — 5 metas SMART definidas com foco em evolução **L6** | `2026-02-05T12:00:00Z` |
+| Onboarding | Onboarding TALENT PLATFORM concluído — Setup do ambiente e arquitetura validada | `2026-01-05T12:00:00Z` |
+
+### Próximos passos
+
+| Estado | Título | Detalhe |
+|--------|--------|---------|
+| **PENDENTE** | Completar Self-Assessment Q1 | Ciclo de Performance Q1 2026 — prazo **10/03** |
+| **EM ANDAMENTO** | Certificação AWS Solutions Architect | **20%** concluído — módulo Networking em andamento |
+| **AGENDADO** | 1:1 com Rafael Mendes (EM) | Sexta-feira **10:00** — Revisão de carreira **L5 → L6** |
+
+### Pontos de atenção para produção
+
+| Tema | Observação |
+|------|------------|
+| Datas | O mock mistura marcos Q1 2026; produção deve calcular prazo e atraso com base em data real. |
+| Feedback | O cartão usa “Feedback 360°”, enquanto Pulse documenta reconhecimentos contínuos. Definir rótulos para não confundir. |
+| Épico | **Autenticação & Autorização** e **OAuth 2.1** parecem nomes do mesmo contexto. PRD deve fixar nomenclatura. |
+| OKRs | O Dashboard mostra progresso, mas não define origem, dono ou regra de atualização. |
+| Certificações | Falta regra para validade, fonte e comprovação. |
+
+</ReferenciaProtótipo>

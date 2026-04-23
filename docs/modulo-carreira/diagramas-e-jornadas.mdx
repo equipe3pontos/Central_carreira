@@ -1,0 +1,159 @@
+---
+sidebar_position: 3
+title: Diagramas e jornadas
+description: "Fluxogramas, mapas de experiência (jornada), diagramas de sequência e blueprint de serviço com Mermaid nas páginas MDX."
+---
+
+# Diagramas e jornadas
+
+Este site usa **[Mermaid](https://mermaid.js.org/)** através do tema oficial `@docusaurus/theme-mermaid`. Em qualquer página **`.mdx`** pode declarar diagramas dentro de um bloco de código com a linguagem **`mermaid`** — são renderizados no *build* e no cliente.
+
+Syntax highlight e variantes suportadas seguem a [documentação do Mermaid](https://mermaid.js.org/syntax/flowchart.html); abaixo há **modelos** alinhados ao Módulo de Carreira (PM, UX, narrativa do protótipo).
+
+---
+
+## Fluxograma de processo
+
+Útil para **decisões**, **estados** ou **handoffs** entre telas ou equipes. Use `flowchart TD` (cima para baixo) para fluxos lineares com ramificações; `flowchart LR` quando o espaço horizontal for mais legível.
+
+### Exemplo simples — PDI: novo ciclo ou lista
+
+```mermaid
+flowchart LR
+  subgraph entrada["Colaborador"]
+    A([Abre /app/pdi])
+  end
+  subgraph decisao["Estado do check"]
+    B{Novo ciclo?}
+  end
+  subgraph fluxo["Fluxo"]
+    C[Check de evolução]
+    D[Lista de metas SMART]
+  end
+  A --> B
+  B -->|Sim| C
+  B -->|Não| D
+```
+
+### Exemplo completo — Dashboard `/app` com estados e fallbacks
+
+Fluxo com **entrada**, **leitura por bloco**, **decisão de destino**, **estados vazios**, **erro recuperável** e **retorno ao ciclo**. Referência canônica; o diagrama completo está em [Dashboard — experiência do usuário](./colaborador/dashboard/experiencia).
+
+```mermaid
+flowchart TD
+  START(["Abre /app"])
+  LOAD{"Dados carregaram?"}
+  ERROR["Erro recuperável — bloco isolado"]
+  HERO["Boas-vindas"]
+  METRICS["Cartões de métricas"]
+  NEXT{"Próximo passo ativo?"}
+  NEXT_BLOCK["Próximos passos — pendência, prazo, destino"]
+  NO_NEXT["Estado vazio + sugestão"]
+  ACTIONS["Ações rápidas — Dar Feedback, PDI, Check-in, Standup"]
+  FEED["Atividades recentes"]
+  DECIDE{"Qual sinal pede ação?"}
+  PDI["/app/pdi"]
+  PULSE["/app/pulse"]
+  PERFIL["/app/perfil"]
+  BACK(["Volta ao Dashboard"])
+
+  START --> LOAD
+  LOAD -->|"Sim"| HERO
+  LOAD -->|"Falha"| ERROR
+  ERROR -->|"Retry"| LOAD
+  HERO --> METRICS --> NEXT
+  NEXT -->|"Sim"| NEXT_BLOCK --> ACTIONS
+  NEXT -->|"Não"| NO_NEXT --> ACTIONS
+  ACTIONS --> FEED --> DECIDE
+  DECIDE -->|"Desenvolvimento"| PDI
+  DECIDE -->|"Feedback"| PULSE
+  DECIDE -->|"Carreira"| PERFIL
+  PDI & PULSE & PERFIL --> BACK
+  BACK -->|"Nova sessão"| START
+
+  classDef action fill:#12E419,color:#09090A,stroke:none,font-weight:bold
+  classDef dest   fill:#3895FF,color:#FDFDFD,stroke:none
+  classDef empty  fill:#2C2C2D,color:#9C9C9C,stroke:#2C2C2D,stroke-dasharray:4
+  classDef error  fill:#7F1D1D,color:#FDFDFD,stroke:none
+
+  class ACTIONS action
+  class PDI,PULSE,PERFIL dest
+  class NO_NEXT empty
+  class ERROR error
+```
+
+---
+
+## Mapa de experiência — jornada (*user journey*)
+
+O tipo **`journey`** resume **fases**, **passos** e uma **nota subjectiva** (1–5) por linha — bom para *workshops* ou síntese de pesquisa.
+
+```mermaid
+journey
+  title Jornada resumida — criar meta PDI
+  section Descobrir
+    Ver cobertura por pilar: 4: Colaborador
+    Identificar gap na matriz: 3: Colaborador
+  section Agir
+    Nova Meta SMART: 4: Colaborador
+    Vincular gap opcional: 3: Colaborador
+  section Fechar
+    Guardar meta no PDI: 5: Colaborador
+```
+
+---
+
+## Blueprint de serviço (*service blueprint*, simplificado)
+
+Camadas **visível / contacto / suporte** num único diagrama (equivalente conceptual ao *blueprint* clássico). Ajuste rótulos aos vossos atores reais.
+
+```mermaid
+flowchart TB
+  subgraph ev["Ações visíveis — cliente"]
+    U[Utilizador no /app/pdi]
+  end
+  subgraph ct["Front stage — contacto"]
+    UI[Interface PDI · metas · checks]
+  end
+  subgraph bk["Back stage — sistemas"]
+    API[Serviços carreira / dados]
+    RH[Políticas RH · visibilidade]
+  end
+  subgraph sup["Suporte"]
+    OBS[Observabilidade · auditoria]
+  end
+  U --> UI --> API
+  API --- RH
+  API --- OBS
+```
+
+---
+
+## Diagrama de sequência (*touchpoints*)
+
+Para **ordem temporal** de mensagens entre pessoa, UI e API.
+
+```mermaid
+sequenceDiagram
+  participant C as Colaborador
+  participant UI as App PDI /app/pdi
+  participant API as Backend carreira
+  C->>UI: Abre Novo Check
+  UI->>API: Pedido estado do ciclo
+  API-->>UI: Q1 · progresso · peers
+  UI-->>C: Overlay Check Point
+```
+
+---
+
+## Como usar noutras páginas
+
+1. Garantir que o ficheiro é **`.mdx`** (não só `.md`, se o projeto não processar Mermaid nos *plain* Markdown).
+2. Inserir um **bloco de código** Markdown: abrir com três crases, a palavra *mermaid* nessa primeira linha, o corpo do diagrama, e fechar com três crases.
+3. Validar sintaxe na [live editor](https://mermaid.live/) se o diagrama não aparecer ou o *build* falhar.
+
+:::tip Convenções da doc Hunter
+
+Preferir **frases curtas** nos nodos, **PT** nos títulos de diagrama quando a página for PT, e **nome de rotas** entre crases mentais (`/app/pdi`) só quando ajudam o leitor técnico — tal como nas restantes páginas do módulo.
+
+:::

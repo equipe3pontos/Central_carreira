@@ -1,0 +1,95 @@
+---
+sidebar_position: 3
+title: Pulse (`/app/pulse`)
+description: "Reconhecimentos entre pares, feed, filtros e envio de Pulse no protótipo."
+---
+
+# Pulse (`/app/pulse`)
+
+<AnaliseProduto>
+
+### Finalidade
+
+A rota **`/app/pulse`** concentra **reconhecimentos** (*kudos* / *pulses*) **recebidos e enviados** entre pares, com **filtros temporais** e atalho para **enviar** um novo *Pulse*. Diferencia-se do **feedback 360°** formal (ciclos, *manager*, *peers* no *check* de evolução) e do [PDI](./perfil-pdi): trata-se de **reconhecimento contínuo e visível** no *feed*, alinhado a cultura e colaboração do dia a dia.
+
+### Rastreabilidade
+
+| Destino | Relação |
+|---------|---------|
+| [Dashboard](./dashboard) | *Call-to-action* **Dar feedback** e cartão de *Feedback 360°* remetem a este domínio de *peer feedback* |
+| [Visão geral](./perfil-visao-geral) | *Pulses* e *insights* de IA consomem sinal de reconhecimento (sintetizado) |
+| [Jornada · Badges](./perfil-jornada-badges) | Reconhecimentos podem alimentar *badges* e narrativa social |
+
+### Limitações do protótipo
+
+Contagens, texto e datas são **cenário de demonstração**. Regras de moderação, privacidade por *squad* e persistência não estão fechadas nesta página.
+
+</AnaliseProduto>
+
+<ReferenciaProtótipo>
+
+### Cabeçalho
+
+| Elemento | Texto (protótipo) |
+|----------|---------------------|
+| Rótulo | **Pulse** |
+| Subtítulo | Reconhecimentos que você recebeu da equipe |
+| Ação primária | **Enviar Pulse** |
+
+### Indicadores resumo
+
+| Métrica | Valor (mock) |
+|---------|----------------|
+| **Recebidos** | **5** |
+| **Enviados** | **5** |
+| **Total de reconhecimentos** | **101** |
+| **Interações totais** | *(métrica agregada — valor numérico não indicado no *paste* de referência)* |
+
+:::note Consistência com o *dashboard*
+
+No cartão **Feedback 360°** da [área `/app`](./dashboard) aparecem **8** recebidos · **12** enviados — métricas de **ciclo 360°**. Na página **Pulse**, os **5** / **5** referem-se ao **conjunto filtrado** ou ao *slice* de reconhecimentos mostrado no protótipo, não ao mesmo agregado do cartão.
+
+:::
+
+### Filtros do *feed*
+
+| Dimensão | Opções |
+|----------|--------|
+| **Âmbito** | **Recebidos** · **Enviados** · **Todos** |
+| **Tempo** | **Últimos 7 dias** · **Últimos 30 dias** · **Últimos 90 dias** |
+
+### Reconhecimentos recebidos · linha do tempo (mock)
+
+Destinatário fixo no cenário: **Marcelo Henrique Machado**. Colunas da lista: remetente · função · data (*ISO 8601*) · **categoria** do *Pulse* · mensagem · indicadores de engajamento (*mock*: primeiro número **/** segundo número por linha).
+
+| Remetente | Função (*role*) | Data (*UTC*) | Categoria | Engajamento |
+|-----------|-----------------|--------------|-----------|-------------|
+| Ana Rodrigues | Product Manager · Squad Plataforma | 2026-03-03T12:00:00Z | Trabalho em equipe | **15** · **2** |
+| Rafael Mendes | Engineering Manager · Squad Plataforma | 2026-02-28T12:00:00Z | Além das expectativas | **23** · **1** |
+| Lucas Almeida | Software Engineer (L3) · Squad Plataforma | 2026-02-26T12:00:00Z | Excelente mentor | **18** · **0** |
+| Paula Santos | Tech Lead · Squad Core | 2026-02-19T12:00:00Z | Liderança inspiradora | **12** · **1** |
+| Marina Costa | UX Designer · Squad Core | 2026-02-12T12:00:00Z | Ótima apresentação | **27** · **2** |
+
+#### Mensagens (*copy* integral)
+
+**Ana Rodrigues · Trabalho em equipe**
+
+Marcelo, sua liderança técnica na Sprint 7 foi impecável! A forma como você alinhou a arquitetura OAuth 2.1 com o time e resolveu os bloqueios técnicos fez toda a diferença. Obrigada pela parceria!
+
+**Rafael Mendes · Além das expectativas**
+
+A otimização que você fez na API reduziu a latência P95 de 450ms para 285ms! Isso impactou diretamente a experiência dos usuários e a performance do TALENT PLATFORM. Excelente trabalho!
+
+**Lucas Almeida · Excelente mentor**
+
+Marcelo, nossas sessões semanais de mentoria têm sido transformadoras! Aprendi muito sobre arquitetura de APIs e design patterns. Obrigado por investir tempo no meu desenvolvimento!
+
+**Paula Santos · Liderança inspiradora**
+
+Sua mediação no conflito sobre o módulo de cache entre Core e Infra foi incrível. Conseguimos chegar em um consenso técnico que beneficia ambos os squads. Obrigada por facilitar esse processo!
+
+**Marina Costa · Ótima apresentação**
+
+A Tech Talk sobre Distributed Tracing com OpenTelemetry foi sensacional! Você tem uma habilidade incrível de explicar conceitos complexos de forma simples. Aprendi muito!
+
+</ReferenciaProtótipo>

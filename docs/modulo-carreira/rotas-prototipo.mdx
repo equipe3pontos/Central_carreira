@@ -1,0 +1,116 @@
+---
+sidebar_position: 3
+title: Mapa de rotas (protótipo)
+description: Rotas definidas no mockup Módulo de Carreira (2) — fonte routes.tsx — e URLs legadas que redirecionam para /app.
+---
+
+# Mapa de rotas do protótipo
+
+O site em [reveal-essay-77974683.figma.site](https://reveal-essay-77974683.figma.site) corresponde ao mockup exportado. A **lista completa de caminhos** não está apenas na documentação antiga: está no código — **`Módulo de Carreira (2)/src/app/routes.tsx`** (`createBrowserRouter`). Qualquer rota nova ou renomeada deve **reflectir-se primeiro** nesse ficheiro e **depois** nesta página (*docs-as-code*).
+
+:::warning Escopo da entrega atual
+
+Nesta fase, a entrega e a documentação operacional cobrem **somente o Módulo Colaborador** (`/app/*`). As rotas **RH Tech People** (`/hr/*`) continuam listadas porque existem no protótipo, mas ficam como **referência de descoberta / roadmap**. Não devem gerar backlog de implementação, critérios de aceite ou testes de produção agora.
+
+:::
+
+## Resumo numérico
+
+| Categoria | Quantidade | Descrição |
+|-----------|------------|-----------|
+| **Rotas canónicas** | **17** | Destinos finais com componente próprio (landing, `/app/*`, `/hr/*`, `/font-test`). |
+| **Aliases legados** | **7** | Mesmo *screens* que `/app/...`, mas URL **sem** prefixo `/app`; o router **redireciona** para o caminho canónico. |
+| **Catch-all** | `*` | Qualquer outro path → redireciona para `/`. |
+
+### Escopo de implementação nesta fase
+
+| Grupo | Status para esta fase | Como tratar |
+|-------|-----------------------|-------------|
+| **`/app/*` Colaborador** | **Dentro do escopo** | Documentar, refinar, testar e priorizar. |
+| **Aliases legados para `/app/*`** | **Compatibilidade / referência** | Validar redirecionamento se o protótipo for usado em captura ou teste; não tratar como telas novas. |
+| **`/hr/*` RH Tech People** | **Fora do escopo de implementação agora** | Manter inventário como referência do protótipo; transformar em backlog só quando RH entrar no roadmap. |
+| **`/` landing** | **Entrada do protótipo** | Usar apenas para acesso ao módulo; a prioridade funcional é `/app`. |
+| **`/font-test`** | **Utilitário técnico** | Não entra no escopo de produto. |
+
+### Colaborador em números (só trilha `/app`)
+
+No `routes.tsx`, o bloco **`path: "app"`** define **todas** as URLs do módulo Colaborador. Não há sub-rotas escondidas noutro ficheiro — o inventário abaixo fecha com o código.
+
+| Métrica | Quantidade | Notas |
+|---------|------------|--------|
+| **Rotas canónicas `/app…`** | **8** | Uma por URL distinta: índice `/app` + 7 `path` filhos (`perfil`, `pdi`, `pulse`, `pulse/received`, `pulse/sent`, `projetos`, `squads`). |
+| **Aliases legados → Colaborador** | **7** | Redirecionam para o mesmo conteúdo que `/app/perfil` … `/app/squads` — **não** existe alias para o *dashboard* em `/` (o *dashboard* é **só** em **`/app`**). |
+| **Superfície URL útil para Colaborador** | **15** | 8 canónicas + 7 aliases (para testes e capturas, cada alias dispara um `replace` para a canónica). |
+
+---
+
+## Rotas canónicas
+
+### Entrada e utilitário
+
+| Rota | Área | Uso (resumo) |
+|------|------|----------------|
+| `/` | Entrada | Escolha Colaborador vs RH (`SelectProfile`). |
+| `/font-test` | Desenvolvimento | Página de teste de fontes (`FontTestPage`) — útil no *dev*; pode não estar ligada no *deploy* público. |
+
+### Módulo Colaborador (`/app/*`)
+
+Layout partilhado: `Layout` (`components/employee/Layout.tsx`). **Índice** = *dashboard* (`Dashboard`).
+
+| Rota | Componente (import em `routes.tsx`) | Uso (resumo) |
+|------|-------------------------------------|----------------|
+| `/app` | `Dashboard` | Jornada Colaborador — *dashboard* (métricas, ações rápidas, feed, próximos passos). |
+| `/app/perfil` | `Profile` | Perfil |
+| `/app/pdi` | `PDI` | PDI |
+| `/app/pulse` | `Pulse` | Pulse (hub) |
+| `/app/pulse/received` | `Pulse` | Feedbacks recebidos (mesmo componente; estado por URL) |
+| `/app/pulse/sent` | `Pulse` | Feedbacks enviados |
+| `/app/projetos` | `Projects` | Projetos |
+| `/app/squads` | `Squads` | Squads |
+
+**Total explícito no router:** **8** entradas de rota sob `/app` (1 índice + 7 `path`). Três URLs usam o mesmo componente **`Pulse`** (`/pulse`, `/pulse/received`, `/pulse/sent`).
+
+### Módulo RH Tech People (`/hr/*`)
+
+:::note Fora do escopo agora
+
+As rotas abaixo existem no protótipo, mas **não fazem parte da entrega atual**. Use esta tabela apenas para preservar rastreabilidade do mock e evitar perda de contexto para uma fase futura.
+
+:::
+
+Layout: `LayoutHR`. Índice = *overview* RH.
+
+| Rota | Uso (resumo) |
+|------|----------------|
+| `/hr` | Overview administrativo RH |
+| `/hr/people-analytics` | People Analytics |
+| `/hr/okrs` | OKRs (visão RH) |
+| `/hr/talent-management` | Gestão de talentos |
+| `/hr/performance` | Performance |
+| `/hr/reports` | Relatórios |
+
+**Total de rotas canónicas:** 2 (entrada + font-test) + 8 (`/app` e filhos) + 7 (`/hr` e filhos) = **17**.
+
+---
+
+## Aliases legados (redirecionamento)
+
+Implementados como rotas à raiz que montam `RedirectToApp`: em tempo de execução navegam para **`/app` + o mesmo *pathname*** (`replace`).
+
+| Rota antiga | Destino após redirecionamento |
+|-------------|-------------------------------|
+| `/perfil` | `/app/perfil` |
+| `/pdi` | `/app/pdi` |
+| `/pulse` | `/app/pulse` |
+| `/pulse/received` | `/app/pulse/received` |
+| `/pulse/sent` | `/app/pulse/sent` |
+| `/projetos` | `/app/projetos` |
+| `/squads` | `/app/squads` |
+
+Estas **7 URLs** não são páginas diferentes do ponto de vista de produto — são **compatibilidade de marcadores** ou links antigos sem o prefixo `/app`.
+
+---
+
+## URL base do *host* público
+
+`https://reveal-essay-77974683.figma.site` — acrescente o *path*, por exemplo `https://reveal-essay-77974683.figma.site/app/pdi`.
