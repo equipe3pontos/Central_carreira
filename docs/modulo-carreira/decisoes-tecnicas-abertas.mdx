@@ -1,0 +1,117 @@
+---
+sidebar_position: 99
+title: Decisões técnicas abertas
+description: "4 questões de arquitetura e produto sem resolução. Impacto em cache, RBAC, validação, permissões."
+---
+
+# Decisões técnicas abertas
+
+> 4 decisões críticas em aberto. Cada uma afeta design de dados, API, frontend ou permissões. Precisam ser resolvidas antes de fechamento de escopo.
+
+---
+
+## 1️⃣ Dashboard — Algoritmo de Priorização
+
+**Questão:** Qual é a heurística exata para ordenar as "Ações Rápidas" (Dar Feedback, Atualizar PDI, Check-in, Daily Standup)?
+
+**Contexto:** Atualmente a ordem é: Feedback → PDI → Check-in → Standup. Mas deve ser dinâmica?
+
+**Impacto Arquitetura:**
+- Define lógica de cache na API (`/app` rota principal)
+- Afeta tempo de resposta (ordering precisa ser rápido)
+- Pode exigir ordenação baseada em recência, prioridade ou preferência do usuário
+
+**Opções:**
+- **A:** Ordem fixa (simples, previsível)
+- **B:** Baseada em recência (última ação do usuário vem primeiro)
+- **C:** Baseada em prioridade de carreira (PDI → Feedback → Rest)
+- **D:** Configurável por usuário (flexível, mais complexo)
+
+**Decisão:** Pendente
+
+---
+
+## 2️⃣ Skills / Gaps — Governança de Dados
+
+**Questão:** Quem detém permissão de escrita para atualizar "Nível Atual" vs "Nível Esperado"?
+
+**Contexto:** 
+- Nível Atual = onde colaborador está hoje (quem escreve? gestor? sistema?)
+- Nível Esperado = alvo para o cargo (quem escreve? RH? gestor? sistema?)
+
+**Impacto Arquitetura:**
+- Define RBAC (Role-Based Access Control) no banco de dados
+- Afeta permissões em endpoints `/api/skills/current` e `/api/skills/expected`
+- Determina fluxo de aprovação (gestor aprova? RH valida?)
+
+**Opções:**
+- **A:** Colaborador pode editar ambos (confiança total, risco: subjetividade)
+- **B:** Gestor edita Esperado, colaborador edita Atual (separação)
+- **C:** Sistema preenche com base em carreira (L4→L5 tem Esperado pré-definido)
+- **D:** RH controla ambos (centralizado, menos autonomia)
+
+**Decisão:** Pendente
+
+---
+
+## 3️⃣ PDI — Restrição Lógica
+
+**Questão:** O sistema deve bloquear a criação de uma meta avulsa (sem gap atrelado)?
+
+**Contexto:** Toda meta PDI deveria vir de um gap identificado na matriz de competências. Ou pode haver metas "livres"?
+
+**Impacto Arquitetura:**
+- Altera validações no formulário de submissão (frontend)
+- Define schema do banco: `pdi_meta.gap_id` é obrigatório ou nullable?
+- Afeta fluxo de criação: colaborador escolhe gap → cria meta automática, OU cria meta e depois vincula gap?
+
+**Opções:**
+- **A:** Obrigatório: toda meta precisa de gap atrelado (validação forte, força coerência)
+- **B:** Opcional: meta pode existir sem gap (flexível, mas fragmenta diagnóstico)
+- **C:** Semi-obrigatório: meta sem gap é permitida mas sinalizada como "risco" na UI
+
+**Decisão:** Pendente
+
+---
+
+## 4️⃣ Privacidade — Visibilidade do Pulse
+
+**Questão:** Gestores têm acesso de leitura a Pulses (feedbacks) anônimos enviados entre membros do time?
+
+**Contexto:** Feedback 360° é enviado e recebido por colaboradores. Deve gestor ver o feedback recebido? E o enviado (anônimo)?
+
+**Impacto Arquitetura:**
+- Design de permissões de leitura no microsserviço de feedback
+- Define colunas/campos do schema: `pulse.visible_to_managers`, `pulse.is_anonymous`
+- Afeta queries: `/api/pulse/feedback-received` e `/api/pulse/feedback-sent`
+
+**Opções:**
+- **A:** Gestor não vê nada (privado total, menos visibilidade de team health)
+- **B:** Gestor vê feedback recebido mas não enviado (assimétrico)
+- **C:** Gestor vê ambos, mas feedback marcado como anônimo mantém sigilo (transparência + privacidade)
+- **D:** Gestor vê agregado (contagem) mas não textos individuais (compromisso)
+
+**Decisão:** Pendente
+
+---
+
+## Status & Próximos Passos
+
+| Decisão | Status | Responsável | Deadline |
+|---------|--------|-------------|----------|
+| Dashboard Priorização | 🔴 Aberta | PM / Design | — |
+| Skills Governança | 🔴 Aberta | Arquitetura / RH | — |
+| PDI Restrição | 🔴 Aberta | Produto / Frontend | — |
+| Pulse Privacidade | 🔴 Aberta | Segurança / PM | — |
+
+**Bloqueadores:** Implementação de Skills, Dashboard, PDI aguarda resolução dessas 4.
+
+---
+
+## Como Registrar Decisão
+
+Quando uma questão for resolvida:
+1. Mude status para 🟢 Resolvida
+2. Registre opção escolhida
+3. Documente justificativa
+4. Atualize impactos na arquitetura correspondente
