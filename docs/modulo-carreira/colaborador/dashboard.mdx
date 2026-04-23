@@ -4,11 +4,143 @@ title: Dashboard (`/app`)
 description: "Hub da tela inicial /app: experiência, decisões, validações e referência do protótipo."
 ---
 
-# Dashboard (`/app`)
+# Dashboard — o que precisa de atenção agora
 
-> O Dashboard é a tela de triagem da trilha Colaborador. Em uma visita curta, a pessoa deve entender contexto de trabalho, prioridade de desenvolvimento e próximo passo.
+> Colaborador sabe o que fazer nos próximos 2 minutos. Sem Dashboard, leva 8 min juntando contexto em 5 módulos. Solução: resumo + ações rápidas + próximos passos — tudo nesta tela.
 
-Use esta página como sumário executivo. As subpáginas separam experiência, decisões de produto e referência do protótipo. A sequência da jornada do utilizador na trilha está no [índice Colaborador](../colaborador) (secção **Como ler esta documentação**).
+---
+
+## O problema: contexto fragmentado
+
+Sem entrada unificada, colaborador:
+- Abre Perfil para saber squad/alocação
+- Abre PDI para próximos passos
+- Abre Pulse para feedback recente
+- Abre Projetos para épico ativo
+- **Resultado:** 7-8 min até primeira decisão. Recorrência: 1x/mês (só avaliação).
+
+---
+
+## Solução: estrutura visual em 7 regiões
+
+### 1. Barra superior
+
+Contexto navegacional. Logo, menu (Dashboard ativo), data, notificação, troféu, perfil, logout.
+
+**Papel:** Permanecer visível. Sempre voltar para qualquer módulo sem perder referência.
+
+### 2. Card squad
+
+Uma linha: squad ativa, produto, status (verde = ativo).
+
+**Papel:** Responder "Onde estou?" em 1 segundo.
+
+### 3. Cartões de métricas (5 cartões)
+
+| Cartão | Mostra | Origem |
+|--------|--------|--------|
+| Alocação | Squad + status | Sistema aloc. |
+| Feedback 360° | Recebidos/Enviados + ciclo | Pulse |
+| OKRs | % progresso + período | OKR tool |
+| Sprints | Contagem ativa | Jira |
+| Certificações | Total obtidas | Cert platform |
+
+**Papel:** Sinais rápidos. "Como estou?"
+
+### 4. Coluna esquerda: ações + épico
+
+#### Ações rápidas (4 botões)
+
+| Ação | Destino | Uso |
+|------|---------|-----|
+| Dar Feedback | Pulse modal | Reconhecer colega |
+| Atualizar PDI | `/app/pdi` | Ajustar plano |
+| Check-in Semanal | Formulário | Reportar progresso |
+| Daily Standup | Calendário | Evento agendado |
+
+**Papel:** Reduzir fricção. Não forçar navegação.
+
+#### Epic em andamento
+
+Épico ativo da sprint. ID, projeto, sprint, prioridade, progresso (%), stories, story points, ETA.
+
+**Papel:** Contexto de trabalho. Ligar técnico a carreira.
+
+### 5. Coluna direita: atividades recentes
+
+Timeline inversa (recente no topo). Cada evento: indicador de cor, texto, timestamp ISO 8601, destino clicável.
+
+**Papel:** Histórico. "O que mudou?"
+
+### 6. Próximos passos (3 cartões)
+
+| Estado | Cor | Exemplo | Ação |
+|--------|-----|---------|------|
+| PENDENTE | Amarelo | Self-Assessment Q1 — Prazo 10/03 | Abre formulário |
+| EM ANDAMENTO | Azul | Certificação AWS SAA — 20% concluído | Link para plataforma |
+| AGENDADO | Verde | 1:1 Rafael — Sexta 10:00 | Abre calendário |
+
+**Papel:** Foco. Próximas pendências visíveis.
+
+---
+
+## Por que funciona
+
+**Pergunta central respondida:** "O que precisa de atenção agora?"
+
+Sem Dashboard: resposta vem de 5 módulos distintos → paralelismo.  
+Com Dashboard: resposta está nesta tela → ação em 2 min.
+
+**Métrica de sucesso:** `dashboard_viewed` → ação (PDI, feedback, check, próximo passo) em 70% das sessões.
+
+---
+
+## Explore a documentação
+
+:::info Navegação estruturada
+Use os cards abaixo para entender cada camada.
+:::
+
+### 📋 Por que o Dashboard existe
+**Diagnóstico:** Colaborador sem entrada unificada = contexto fragmentado = abandono.
+
+[Ler: Problema & diagnóstico](./dashboard/problema-diagnostico.mdx)
+
+---
+
+### 🏗️ Como funciona
+**Arquitetura:** C4 Model (contexto, containers, componentes), fluxos de dados, padrões.
+
+[Ler: Arquitetura & solução](./dashboard/arquitetura-solucao.mdx)
+
+---
+
+### 📊 Como validar
+**Hipóteses:** Tempo reduzido, recorrência semanal, feedback loop, próximos passos geram conclusão.
+
+[Ler: Validação & métricas](./dashboard/validacao-metricas.mdx)
+
+---
+
+### 🎨 Prototipo & componentes
+**Inventário:** Textos literais, cores, componentes, mockup.
+
+[Ler: Referência do protótipo](./dashboard/referencia-prototipo.mdx)
+
+---
+
+### ✅ Contrato funcional
+**PRD:** Requisitos funcionais, não funcionais, critérios de aceite, Gherkin.
+
+[Ler: Decisões & validação](./dashboard/decisoes-validacao.mdx)
+
+---
+
+## Próximo passo
+
+**Perfil:** Entender onde você está (squad, alocação, skills, histórico).
+
+[Ir para Perfil →](./perfil-visao-geral.mdx)
 
 <AnaliseProduto>
 

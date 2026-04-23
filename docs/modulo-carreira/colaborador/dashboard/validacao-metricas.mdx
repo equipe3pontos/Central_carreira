@@ -1,0 +1,60 @@
+---
+sidebar_position: 4
+title: Dashboard — validação e métricas
+description: "Hipóteses, eventos, critérios de aceite para o Dashboard /app."
+---
+
+# Dashboard — validação e métricas
+
+> Dashboard funciona se colaborador volta semanalmente, feedback vira ação, próximos passos viram metas PDI.
+
+---
+
+## Hipóteses de sucesso
+
+1. **Tempo reduzido:** Colaborador toma primeira decisão em menos de 2 minutos (vs 7-8 min hoje).
+2. **Recorrência:** Acesso semanal (vs mensal hoje).
+3. **Feedback loop:** Feedback recebido → reconhecimento → PDI em mesmo período.
+4. **Próximos passos:** 70% dos "próximos passos" viram ação em 7 dias.
+
+---
+
+## Eventos a rastrear
+
+| Evento | Definição | Sucesso |
+|--------|-----------|---------|
+| `dashboard_viewed` | Utilizador acessa /app | Todos os colaboradores 1x/semana |
+| `quick_action_clicked` | Clica em ação rápida (feedback, PDI, check-in, standup) | 70% das sessões geram ação |
+| `next_step_opened` | Abre um "próximo passo" | 70% das sessões abrem próxima ação |
+| `activity_item_opened` | Clica em evento da timeline | 50% das sessões exploram timeline |
+| `epic_viewed` | Consulta épico em andamento | 60% das sessões exploram trabalho |
+
+---
+
+## Métrica North Star
+
+**Dashboard success: 70% das sessões geram ação rápida OU movem próximo passo**
+
+- Ação rápida = clique em feedback/PDI/check/standup
+- Próximo passo = abertura de cartão PENDENTE/EM ANDAMENTO/AGENDADO
+
+---
+
+## Critério de aceite
+
+- [x] 7 regiões visuais bem definidas com papel claro.
+- [x] Barra de navegação presente em todas as páginas.
+- [x] 5 cartões de KPI renderizam sem erro.
+- [x] 4 ações rápidas funcionam (navegação/modal).
+- [x] Épico em andamento conecta a Projetos.
+- [x] Timeline com cores semânticas (🟢🟡🔵🟣).
+- [x] 3 próximos passos com estados (PENDENTE/EM ANDAMENTO/AGENDADO).
+- [x] Responsivo em mobile/tablet/desktop.
+
+---
+
+## Próximo passo
+
+🔍 **Diagnóstico:** [Problema & diagnóstico](./problema-diagnostico.mdx)  
+📋 **Contrato funcional:** [Decisões & validação](./decisoes-validacao.mdx)  
+🏗️ **Arquitetura:** [Arquitetura & solução](./arquitetura-solucao.mdx)

@@ -1,0 +1,173 @@
+---
+sidebar_position: 2.5
+title: Dashboard — arquitetura e solução
+description: "Módulo de Carreira — C4 Model, padrões arquiteturais, fluxos, componentes internos."
+---
+
+# Dashboard — arquitetura e solução
+
+> Dashboard orquestra 6 APIs distintas (Jira, Pulse, PDI, OKR, Alocação, Certificação) em uma página. Cada API falha isoladamente. Componentes carregam em paralelo. Timeline atualiza em polling. Decisões arquiteturais: component composition, error boundaries, state management centralizado.
+
+---
+
+## Por que cada decisão importa
+
+**Problema:** Um serviço cai, o Dashboard todo quebra? Não. APIs chegam lentas, página trava? Não. Múltiplos usuários atualizam PDI simultaneamente, dados defasam? Controlado.
+
+Solução = 3 padrões que garantem isto.
+
+---
+
+## Arquitetura: C4 Model em 4 níveis
+
+### L1: Sistema como um todo
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                    Sistemas externos                       │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
+│  │   Jira API   │  │   Pulse API   │  │   PDI API    │     │
+│  └──────────────┘  └──────────────┘  └──────────────┘     │
+│         ▲                  ▲                 ▲              │
+│         └──────────────────┼─────────────────┘              │
+│                            │                               │
+│                       ┌────────────┐                      │
+│                       │  Dashboard │                      │
+│                       │   (/app)   │                      │
+│                       └────────────┘                      │
+│                            ▲                               │
+│         ┌──────────────────┼─────────────────┐             │
+│         │                  │                 │             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
+│  │ Certificação │  │     OKR      │  │  Alocação    │     │
+│  │   System     │  │   System     │  │   System     │     │
+│  └──────────────┘  └──────────────┘  └──────────────┘     │
+└────────────────────────────────────────────────────────────┘
+           ▲
+           │
+┌──────────┴──────────┐
+│  Utilizador Browser  │
+└─────────────────────┘
+```
+
+Utilizador no navegador interage com Dashboard (`/app`). Dashboard consome 6 APIs: Jira (épico), Pulse (feedback), PDI (metas), OKR, Alocação, Certificação. Nenhuma API é crítica — se Jira cai, resto funciona.
+
+---
+
+### L2: Containers (componentes que falam com APIs)
+
+```
+┌──────────────────────────────────────────────────┐
+│           Browser / React App                    │
+├──────────────────────────────────────────────────┤
+│  ┌────────────────────────────────────────────┐  │
+│  │      Page: Dashboard (/app)                │  │
+│  │  ┌──────────────────────────────────────┐  │  │
+│  │  │ Header Component (barra)             │  │  │
+│  │  └──────────────────────────────────────┘  │  │
+│  │  ┌──────────────────────────────────────┐  │  │
+│  │  │ SquadCard (identidade)               │  │  │
+│  │  └──────────────────────────────────────┘  │  │
+│  │  ┌──────────────────────────────────────┐  │  │
+│  │  │ KPIRow (5 cartões: alocação, ...)    │  │  │
+│  │  └──────────────────────────────────────┘  │  │
+│  │  ┌────────────────────┐  ┌──────────────┐  │  │
+│  │  │ QuickActionsPanel  │  │ ActivitiesFeed│  │  │
+│  │  │ (ações rápidas)    │  │ (timeline)   │  │  │
+│  │  ├────────────────────┤  └──────────────┘  │  │
+│  │  │ EpicCard           │                     │  │
+│  │  │ (épico ativo)      │                     │  │
+│  │  └────────────────────┘                     │  │
+│  │  ┌──────────────────────────────────────┐  │  │
+│  │  │ NextStepsRow (3 cartões)             │  │  │
+│  │  └──────────────────────────────────────┘  │  │
+│  └──────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────┘
+          │              │              │
+          ▼              ▼              ▼
+     ┌────────────┐ ┌────────────┐ ┌────────────┐
+     │ Jira API   │ │ Pulse API  │ │ PDI API    │
+     │            │ │            │ │            │
+     │ GET epic   │ │ GET events │ │ GET metas  │
+     │ GET sprint │ │ GET counts │ │ GET next   │
+     └────────────┘ └────────────┘ └────────────┘
+
+Tecnologias:
+  - React/TypeScript (renderização)
+  - REST/GraphQL (consumo de APIs)
+  - Redux/Context (estado centralizado)
+  - CSS-in-JS (tema)
+```
+
+**Por que isto funciona:**
+- Dashboard Page = orquestra 7 componentes.
+- Cada componente = responsável por seu fetch.
+- State manager = Redux/Context = single source of truth.
+- APIs não falam entre si — Dashboard coordena.
+
+---
+
+### L3: Componentes que resolvem a página
+
+Cada seção visual é um componente. Cada componente = responsável por fetch, retry, fallback.
+
+---
+
+## Fluxos garantem resiliência
+
+### Carregamento da página
+
+1. Utilizador acessa `/app`
+2. Dashboard monta; dispara 8 GET em paralelo (squad, feedback, OKRs, sprints, certificações, épico, timeline, próximos passos)
+3. Redux/Context armazena respostas conforme chegam
+4. Componentes renderizam com dados disponíveis
+5. Se Jira tarda, resto já apareceu; se Pulse falha, KPI feedback mostra vazio (não derruba tudo)
+
+### Ação rápida (ex.: Dar Feedback)
+
+Clique dispara: modal abre → formulário → submit → evento trackado → timeline atualiza (polling cada 30s ou WebSocket)
+
+---
+
+## 3 padrões que garantem confiabilidade
+
+**1. Component composition com fetch isolado**  
+Cada componente = responsável por seus dados (Header fetch perfil, KPIRow fetch métricas). Se uma falha, outras continuam. Reutilização automática (Header em todas as páginas).
+
+**2. Error Boundary em volta de cada seção**  
+KPI envolvido em boundary — se Jira falha, componente mostra vazio mas resto renderiza. Uma fonte de erro não derruba tudo.
+
+**3. State management centralizado**  
+Redux/Context = single source of truth. Componentes consomem estado. Fácil de debugar, fácil de testar.
+
+---
+
+## Contrato: cada componente sabe seu timeout e fallback
+
+| Componente | Fetch | Timeout | Falha |
+|-----------|-------|---------|-------|
+| Header | Perfil (nome, squad) | 2s | Mostra anônimo |
+| KPI | 5 métricas (feedback, OKR, sprints, ...) | 3s | Cartão vazio |
+| Timeline | Últimos 10 eventos | 2s | "Sem atividades" |
+| NextSteps | 3 próximos passos | 2s | "Nenhum passo" |
+| Epic | Épico ativo + story points | 2s | Vazio |
+
+---
+
+## Trade-offs em aberto
+
+| Decisão | Opções | V1 escolhe |
+|---------|--------|-----------|
+| State manager | Redux vs Context vs Zustand | Context (simples) |
+| Fetch pattern | Polling vs WebSocket | Polling 30s (previsível) |
+| Epic source | Jira real-time vs cache | Jira (consistente) |
+| Timeline pagination | Infinite vs "ver mais" | "Ver mais" (controle) |
+| Data cache | LocalStorage vs memory | Memory (reset on refresh) |
+
+---
+
+## Próximo passo
+
+📊 **Valide que funciona:** [Validação & métricas](./validacao-metricas.mdx)  
+🏗️ **Entenda o problema:** [Problema e diagnóstico](./problema-diagnostico.mdx)  
+🏠 **Volte ao hub:** [Dashboard — o que precisa de atenção agora](../dashboard.mdx)
