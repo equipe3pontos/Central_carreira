@@ -54,6 +54,28 @@ Rota **`/app/perfil`**, separador **Visão Geral**. Ver [mapa de rotas](../rotas
 | LinkedIn | **`/in/marcelosilva`** |
 | Ação | **Editar Perfil** |
 
+### Popup "Editar Perfil"
+
+O botão **Editar Perfil** abre um modal centralizado com campos de identidade e presença profissional.
+
+| Campo | Tipo | Observação |
+|-------|------|------------|
+| Nome completo | Texto | Obrigatório |
+| Email corporativo | Texto | Obrigatório |
+| Cargo | Select | Obrigatório |
+| Squad | Select | Obrigatório |
+| Localização | Texto livre | Ex.: `Híbrido · São Paulo, SP` |
+| LinkedIn | Texto | Username |
+| GitHub | Texto | Username |
+| Bio / Sobre mim | Textarea | Contador de `0/500` caracteres |
+
+| Ação | Rótulo |
+|------|--------|
+| Secundária | **Cancelar** |
+| Primária | **Salvar alterações** |
+
+**Leitura de produto:** este modal fecha a lacuna entre identidade exibida no perfil e dados editáveis pelo próprio colaborador. Ele é de uso recorrente, mas não substitui a navegação do perfil.
+
 ### Indicadores em destaque (cartões superiores)
 
 | Indicador | Valor |
@@ -115,6 +137,7 @@ Ordem no protótipo: **Visão Geral** · **Jornada** · **Skills** · **Experiê
 | **Meta PDI sugerida** | **Tech Talk sobre Arquitetura** — preparar *tech talk* interno sobre decisões arquiteturais recentes |
 | Justificativa | *Por quê? 4 reconhecimentos sobre arquitetura indicam expertise para compartilhar.* |
 | Ação | **Criar Meta PDI** |
+| Controle | **Ocultar** — recolhe o painel de IA |
 | Rodapé explicativo | *Pulse Intelligence analisa reconhecimentos recebidos e sugere metas PDI automaticamente…* |
 
 ### Conquistas recentes (*Últimos 30 dias*)

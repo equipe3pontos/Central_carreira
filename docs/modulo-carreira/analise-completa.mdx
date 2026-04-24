@@ -1,0 +1,138 @@
+---
+sidebar_position: 1.5
+title: Análise completa do protótipo
+description: "Leitura consolidada do protótipo Hunter — Módulo de Carreira: trilha Colaborador ativa, trilha RH em roadmap, funcionalidades, riscos e lacunas documentais."
+---
+
+# Análise completa do protótipo
+
+> Esta página junta a leitura executiva do produto com o inventário funcional do protótipo. Use-a como porta de entrada quando precisar da visão completa sem navegar página por página.
+
+---
+
+## Em uma frase
+
+O **Hunter — Módulo de Carreira** centraliza sinais de carreira, competências, feedback, PDI e contexto organizacional para reduzir fragmentação e transformar evolução profissional em ações rastreáveis.
+
+---
+
+## O que o produto cobre
+
+| Trilha | Estado | Pergunta principal |
+|--------|--------|--------------------|
+| **Colaborador** (`/app`) | Ativa e documentada em detalhe | O que merece atenção agora e qual ação devo tomar? |
+| **RH Tech People** (`/hr`) | Referência de roadmap e do protótipo | Onde estão os riscos, padrões e oportunidades de talento na organização? |
+
+---
+
+## Funções documentadas na trilha Colaborador
+
+| Superfície | Função principal | Página de detalhe |
+|------------|------------------|-------------------|
+| `SelectProfile` (`/`) | Entrada com escolha de módulo | [Mapa de rotas](./rotas-prototipo) |
+| `Dashboard` (`/app`) | Triagem, próximos passos e contexto de trabalho | [Dashboard](./colaborador/dashboard) |
+| `Pulse` (`/app/pulse`) | Feedback contínuo e reconhecimento entre pares | [Pulse](./colaborador/pulse) |
+| `Profile` (`/app/perfil`) | Identidade, momento atual, skills, jornada, PDI e avaliações | [Colaborador](./colaborador) |
+| `Projects` (`/app/projetos`) | Visão transversal de iniciativas e alocação | [Projetos](./colaborador/projetos) |
+| `Squads` (`/app/squads`) | Estrutura de times e organograma | [Squads](./colaborador/squads) |
+| `PDI` (`/app/pdi`) | Metas SMART, checks e cobertura por gap | [PDI](./colaborador/perfil-pdi) |
+
+---
+
+## Funções documentadas na trilha RH
+
+| Rota | Uso previsto | Estado de detalhe |
+|------|--------------|-------------------|
+| `/hr` | Visão executiva da organização | Referência de roadmap documentada |
+| `/hr/people-analytics` | Leitura de engajamento, turnover e distribuição de talentos | Hipótese de produto |
+| `/hr/okrs` | Leitura de objetivos e progresso agregado | Hipótese de produto |
+| `/hr/talent-management` | Priorização de talentos e intervenção | Hipótese de produto |
+| `/hr/performance` | Consolidação de performance formal e prontidão | Hipótese de produto |
+| `/hr/reports` | Relatórios e governança | Hipótese de produto |
+
+---
+
+## Inventário funcional
+
+### Dashboard
+
+- 5 KPIs no topo.
+- 4 ações rápidas.
+- Épico em andamento.
+- Feed de atividades recentes.
+- 3 próximos passos.
+
+### Pulse
+
+- Recebidos, enviados e todos.
+- Filtros temporais.
+- Envio de Pulse com vínculo opcional a competência.
+- Pulse Intelligence com sugestão de meta.
+
+### Perfil
+
+- Visão geral.
+- Jornada.
+- Skills.
+- Experiência.
+- PDI.
+- Avaliações.
+
+### PDI
+
+- Nova Meta SMART.
+- Cobertura por competência.
+- Editar PDI completo.
+- Check de Evolução.
+- Avaliação 360°.
+- Atividades e work items.
+
+### Performance Review
+
+- Próxima avaliação.
+- Rating atual.
+- Prontidão L6.
+- Critérios de promoção.
+- Evolução histórica.
+- Feedback 360° do ciclo.
+- Competências validadas.
+
+### Projetos e Squads
+
+- Projetos com estado, dedicação, stack e progresso.
+- Squads com membros, status e contexto de time.
+- Organograma por BU, Tribe e Squad.
+- Estado placeholder para criação de squads.
+
+---
+
+## Lacunas que já ficaram explícitas
+
+| Tipo | Exemplo |
+|------|---------|
+| **Interação ausente** | Sino de notificações, avatar e botões globais sem comportamento no mock. |
+| **Surface incompleta** | Editar Perfil, Iniciar Novo Check, Enviar Pulse com sugestões e tags. |
+| **Divergência de copy** | Nome do épico varia entre blocos do Dashboard. |
+| **Estado placeholder** | Criar Squad e Novo Projeto não têm fluxo final. |
+| **Hipótese de produção** | Privacidade, SSO, RHIS, BI e permissões em `/hr`. |
+
+---
+
+## Critérios de leitura
+
+| Leitura | Quando usar |
+|---------|-------------|
+| **PM / Produto** | Para fechar problema, tese, escopo e North Star. |
+| **Design** | Para entender fluxo, carga cognitiva e pontos de interação. |
+| **Arquitetura** | Para mapear fronteiras e dependências entre `/app` e `/hr`. |
+| **Redação técnica** | Para identificar o que já está em contrato documental e o que ainda é hipótese. |
+
+---
+
+## Próximos passos documentais
+
+1. Manter a trilha Colaborador como fonte principal de detalhamento.
+2. Evoluir `/hr` como superfície de roadmap, não como backlog de implementação.
+3. Fechar hipóteses de privacidade, permissões e fonte de dados antes de transformar sinais em contrato técnico.
+4. Usar o [Mapa de rotas](./rotas-prototipo) como índice para qualquer alteração de URL.
+5. Revisar a página [RH Tech People](./rh-tech-people) quando houver decisão de escopo.

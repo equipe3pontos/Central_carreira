@@ -53,6 +53,22 @@ No `routes.tsx`, o bloco **`path: "app"`** define **todas** as URLs do módulo C
 | `/` | Entrada | Escolha Colaborador vs RH (`SelectProfile`). |
 | `/font-test` | Desenvolvimento | Página de teste de fontes (`FontTestPage`) — útil no *dev*; pode não estar ligada no *deploy* público. |
 
+### `/` · tela de entrada (`SelectProfile`)
+
+> A rota raiz não é o Dashboard. Ela funciona como ponto de seleção do módulo, com dois cartões lado a lado e redirecionamento para a trilha correspondente.
+
+| Cartão | Conteúdo observado | CTA / destino |
+|--------|--------------------|---------------|
+| **Colaborador** | Lista do que a trilha cobre: Dashboard, Perfil, PDI, Pulse, Projetos e Squads. | **Acessar módulo →** · `/app` |
+| **RH Tech People** | Lista da trilha futura: overview, people analytics, talentos, performance e relatórios. | **Acessar módulo →** · `/hr` |
+
+**Comportamento observado no protótipo**
+
+- Não há formulário de login visível.
+- O mock assume usuário já autenticado como **Marcelo Henrique Machado**.
+- O clique no cartão apenas troca a trilha, sem passo intermediário.
+- A superfície serve como entrada de descoberta, não como tela de trabalho recorrente.
+
 ### Módulo Colaborador (`/app/*`)
 
 Layout partilhado: `Layout` (`components/employee/Layout.tsx`). **Índice** = *dashboard* (`Dashboard`).

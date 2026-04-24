@@ -248,6 +248,29 @@ No modal de introdução: *Performance*, *Skills & Competências*, *Fit Cultural
 
 ---
 
+## Perfil (`/app/perfil`)
+
+### Editar Perfil
+
+**Disparo:** botão **Editar Perfil** no cabeçalho do perfil.
+
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| Nome completo | Text | Obrigatório |
+| Email corporativo | Text | Obrigatório |
+| Cargo | Select | Obrigatório |
+| Squad | Select | Obrigatório |
+| Localização | Text | Ex.: `Híbrido · São Paulo, SP` |
+| LinkedIn | Text | Username |
+| GitHub | Text | Username |
+| Bio / Sobre mim | Textarea | Contador de `0/500` caracteres |
+
+**Ações:** Cancelar · **Salvar alterações**
+
+**Fonte:** domínio Perfil / identidade do colaborador
+
+---
+
 ### Histórico de checks
 
 **Disparo:** clique em **Consultar** em qualquer ciclo concluído na tabela de histórico.
@@ -279,6 +302,8 @@ No modal de introdução: *Performance*, *Skills & Competências*, *Fit Cultural
 | Mensagem | Sim | Textarea |
 | Vínculo com competência | Não | Select — pilar do framework |
 
+**Sugestões no protótipo:** grid com 4 pessoas sugeridas e tags rápidas de motivo como **Agradecimento**, **Liderança inspiradora**, **Trabalho em equipe**, **Excelente trabalho**, **Ideias originais** e **Além das expectativas**.
+
 **Ações:** Cancelar · **Enviar**
 
 **Fonte:** domínio Pulse
@@ -306,6 +331,19 @@ Campos detalhados não estão documentados no protótipo. Levantar com design an
 **Ações:** Fechar
 
 **Fonte:** domínio Pulse
+
+---
+
+### Interações e Pulse Intelligence
+
+| Interação | Comportamento observado |
+|-----------|-------------------------|
+| Coração | Dispara toast `✓ Reação registrada!` |
+| Comentário | Dispara o mesmo toast; o protótipo não abre thread de comentários |
+| Pulse Intelligence | Analisa reconhecimentos recorrentes e sugere uma meta PDI com justificativa |
+| Ocultar | O painel de IA pode ser recolhido |
+
+**Leitura de produto:** Pulse precisa diferenciar reconhecimento contínuo de avaliação formal. O toast confirma a ação sem desviar o usuário do feed.
 
 ---
 
@@ -405,6 +443,45 @@ Os demais campos seguem o comportamento padrão de Nova Meta SMART.
 
 ---
 
+## PDI (`/app/pdi`)
+
+### Iniciar Novo Check de Evolução
+
+**Disparo:** botão **Iniciar Novo Check** na seção de Check de Evolução.
+
+| Bloco | Conteúdo |
+|-------|----------|
+| Pilares avaliados | Performance · Skills & Competências · Fit Cultural · Nível de Potencialidade · Competências Gerais |
+| Ciclo recomendado | A cada 3 meses |
+| Tempo estimado | 20–30 minutos |
+
+**Ações:** Cancelar · **Iniciar Check**
+
+**Fonte:** introdução do fluxo de avaliação trimestral
+
+:::note Copy do protótipo
+
+O modal funciona como orientação antes do preenchimento. Ele deixa claro que o usuário pode pausar e voltar depois, sem perder contexto.
+
+:::
+
+---
+
+## Feedback visual
+
+### Toast notifications
+
+O protótipo usa dois *toasts* como confirmação rápida de ação:
+
+| Evento | Mensagem |
+|--------|----------|
+| Reação em Pulse | `✓ Reação registrada!` |
+| Gap convertido em ação | `ⓘ Gap '[nome]' pode ser adicionado ao PDI` |
+
+**Função:** confirmar a ação sem abrir nova tela ou interromper o fluxo principal.
+
+---
+
 ## Resumo executivo
 
 | # | Modal / painel | Tela | Disparo | Pendência |
@@ -426,3 +503,5 @@ Os demais campos seguem o comportamento padrão de Nova Meta SMART.
 | 15 | Detalhes de check | Perfil — Jornada | Ver Detalhes | — |
 | 16 | Trilha de carreira Y | Perfil — Jornada | Clique na trilha | — |
 | 17 | Criar Meta de gap | Perfil — Skills Gaps | Botão no gap | Herda pendências de Nova Meta SMART |
+| 18 | Editar Perfil | Perfil — Visão geral | Botão no cabeçalho | Identidade editável no mock |
+| 19 | Iniciar Novo Check de Evolução | PDI | Botão de introdução | Modal informativo antes do check |

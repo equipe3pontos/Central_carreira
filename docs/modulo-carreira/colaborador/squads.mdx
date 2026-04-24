@@ -10,7 +10,7 @@ description: "Squads e organograma (BU, tribes, squads) — lista de equipa e hi
 
 ### Finalidade
 
-A rota **`/app/squads`** expõe a **estrutura de equipas** (*squads*) em lista e, na *tab* **Organograma**, a hierarquia **Business Unit → Tribe → Squad** (*Product & Technology*, tribos e *squads* aninhados). Na **lista plana**, o foco é **membros por cartão**; no organograma, o foco é **contexto estratégico** e contagens agregadas. Complementa [Projetos](./projetos) e o [Dashboard](./dashboard).
+A rota **`/app/squads`** expõe a **estrutura de equipas** (*squads*) em lista e, na **aba** **Organograma**, a hierarquia **Business Unit → Tribe → Squad** (*Product & Technology*, tribos e *squads* aninhados). Na **lista plana**, o foco é **membros por cartão**; no organograma, o foco é **contexto estratégico** e contagens agregadas. Complementa [Projetos](./projetos) e o [Dashboard](./dashboard).
 
 ### Rastreabilidade
 
@@ -23,7 +23,7 @@ A rota **`/app/squads`** expõe a **estrutura de equipas** (*squads*) em lista e
 
 ### Limitações do protótipo
 
-Contagens de membros por *squad* ou totais podem **diferir** entre a *tab* **Squads** (lista detalhada) e a *tab* **Organograma** (vista agregada) — **dois cortes do mesmo cenário de demonstração**, não uma regra de produto final. **Criar Squad** não implementa formulário nem persistência no protótipo: exibe estado **«em desenvolvimento»** e orienta contacto com **RH Tech People**. Filtros e possível *layout* gráfico adicional do organograma são *placeholders*.
+Contagens de membros por *squad* ou totais podem **diferir** entre a **aba** **Squads** (lista detalhada) e a **aba** **Organograma** (vista agregada) — **dois cortes do mesmo cenário de demonstração**, não uma regra de produto final. **Criar Squad** não implementa formulário nem persistência no protótipo: exibe estado **«em desenvolvimento»** e orienta contacto com **RH Tech People**. Filtros e possível *layout* gráfico adicional do organograma são *placeholders*.
 
 </AnaliseProduto>
 
@@ -48,7 +48,7 @@ Contagens de membros por *squad* ou totais podem **diferir** entre a *tab* **Squ
 
 ### Subfluxo **Criar Squad** *(placeholder)*
 
-Acionado pelo botão **Criar Squad** (*tabs* **Squads** e **Organograma**). No protótipo, abre uma superfície (*modal* ou página) sem formulário editável.
+Acionado pelo botão **Criar Squad** nas abas **Squads** e **Organograma**. No protótipo, abre uma superfície (*modal* ou página) sem formulário editável.
 
 | Elemento | Texto (*copy*) |
 |----------|----------------|
@@ -215,6 +215,19 @@ No *copy* acima, as **tribes** do organograma têm **12–18** pessoas no mock �
 | JF | Juliana Ferreira | Software Engineer | L4 |
 | PO | Pedro Oliveira | UX/UI Designer | L3 |
 | CS | Camila Santos | QA Engineer | L3 |
+
+#### Card expandido
+
+Cada cartão de *squad* tem um ícone de expansão (*fullscreen*) no mock. Ao abrir, a superfície mostra contexto operacional rápido sem sair da lista.
+
+| Campo | Conteúdo observado |
+|-------|--------------------|
+| Projeto | **TALENT PLATFORM** |
+| Sprint atual | **Sprint 7** |
+| Velocity | **42** pontos |
+| Taxa de conclusão | **94%** |
+
+O estado expandido funciona como mini-painel flutuante com botão de colapso. Ele complementa a lista, não substitui a página de projetos.
 
 #### Squad Core
 

@@ -10,7 +10,7 @@ description: "Especificação inicial da trilha RH Tech People (/hr): proposta d
 
 :::warning Fora do escopo da fase atual
 
-RH Tech People **não será implementado agora**. Esta página preserva a intenção do protótipo para descoberta futura, alinhamento de linguagem e roadmap. Não usar como fonte de backlog de produção enquanto o escopo estiver focado no **Módulo Colaborador** (`/app`).
+RH Tech People **não será implementado agora**. Esta página preserva a intenção do protótipo para descoberta futura, alinhamento de linguagem e referência de roadmap. Não usar como fonte de backlog de produção enquanto o escopo estiver focado no **Módulo Colaborador** (`/app`).
 
 :::
 
@@ -54,6 +54,63 @@ Os itens abaixo descrevem o **protótipo** e a intenção de produto. Não trata
 | **Performance** | Consolidação de ciclos formais, prontidão de nível e evidências de evolução. |
 | **Relatórios** | Exportação ou leitura estruturada para stakeholders e rituais de governança. |
 
+## Superfícies do protótipo
+
+O protótipo lista seis rotas sob `/hr`. Elas formam a área de leitura organizacional, mesmo que o detalhe visual ainda esteja menos maduro do que na trilha Colaborador.
+
+| Rota | Pergunta que responde | Tipo de leitura |
+|------|-----------------------|-----------------|
+| `/hr` | O que a organização precisa ver primeiro? | Overview executivo |
+| `/hr/people-analytics` | Onde estão os padrões e desvios de talento? | Analytics |
+| `/hr/okrs` | O time / área está executando contra objetivos? | Performance organizacional |
+| `/hr/talent-management` | Quem precisa de intervenção, promoção ou suporte? | Gestão de talentos |
+| `/hr/performance` | Como estão os ciclos formais e a prontidão? | Avaliação |
+| `/hr/reports` | O que precisa sair em relatório e governança? | Relatórios |
+
+### Leitura por rota
+
+#### `/hr`
+
+Visão central para leitura rápida da organização. Deve combinar KPIs, alertas e atalhos para análise.
+
+#### `/hr/people-analytics`
+
+Página destinada a padrões agregados: distribuição por nível, áreas com risco, sinais de engajamento e movimentação.
+
+#### `/hr/okrs`
+
+Superfície para acompanhamento agregado de metas organizacionais, alinhamento e pendências de áreas ou tribos.
+
+#### `/hr/talent-management`
+
+Leitura de prioridades de intervenção: sucessão, prontidão, gaps críticos, retenção e foco de desenvolvimento.
+
+#### `/hr/performance`
+
+Consolida avaliação formal por ciclos, histórico e leitura de consistência. É a ponte entre desenvolvimento individual e leitura de performance em escala.
+
+#### `/hr/reports`
+
+Camada de saída para governança: relatórios recorrentes, exportação e material para comitês.
+
+---
+
+## Fluxo de decisão em `/hr`
+
+1. O usuário entra em `/hr` para entender o estado geral.
+2. O overview destaca onde existe risco, tendência ou oportunidade.
+3. O usuário aprofunda em analytics, talento ou performance conforme a pergunta.
+4. O resultado vira relatório, ação de intervenção ou priorização de pessoas.
+
+## Fluxos críticos que a trilha precisa suportar
+
+| Fluxo | Resultado esperado |
+|------|--------------------|
+| Identificar risco | Mostrar área, squad ou grupo com desvio relevante. |
+| Priorizar intervenção | Sugerir onde agir primeiro com base em dados agregados. |
+| Preparar governança | Gerar leitura compatível com comitês e rituais executivos. |
+| Conectar com `/app` | Traduzir sinais individuais em leitura organizacional sem expor o necessário. |
+
 ## Hipóteses abertas
 
 | Hipótese | Validação necessária |
@@ -62,6 +119,8 @@ Os itens abaixo descrevem o **protótipo** e a intenção de produto. Não trata
 | Dados individuais de `/app` podem alimentar leitura agregada em `/hr`. | Política de privacidade, consentimento, anonimização e regras de acesso. |
 | People Analytics reduz tempo de consolidação para decisões de talento. | Baseline atual, métrica de tempo, instrumento analítico e piloto B2B. |
 | Relatórios do protótipo representam rituais reais de governança. | Validação com stakeholders, cadência de reuniões e formatos exigidos. |
+| Um overview executivo é suficiente para começar a análise sem navegar em relatórios. | Teste de tarefa com usuários RH e liderança. |
+| A separação entre visão individual e leitura agregada reduz ruído de decisão. | Entrevistas comparando fluxo com e sem divisão `/app` e `/hr`. |
 
 ## Relação com a trilha Colaborador
 
@@ -80,3 +139,15 @@ Os itens abaixo descrevem o **protótipo** e a intenção de produto. Não trata
 - Mapear integrações com RHIS, BI, ATS, SSO e ferramentas de performance.
 - Definir métricas de sucesso B2B: ativação de contas, uso recorrente de relatórios, decisões tomadas após insights e redução de tempo para análise.
 - Documentar estados vazios, erros, dados incompletos e explicabilidade de insights.
+- Fechar um inventário visual de cada rota com dados reais ou *mock* consistente.
+- Definir a taxonomia de alertas, filtros e níveis de granularidade da leitura agregada.
+
+## Critérios de leitura desta trilha
+
+| Tema | Pergunta de decisão |
+|------|---------------------|
+| Dados | Quais sinais vêm de `/app` e quais são agregados? |
+| Privacidade | Quem pode ver o quê em nível individual e agregado? |
+| Governança | O que sai em relatório e o que fica só no overview? |
+| Prioridade | Como a UI indica o que requer intervenção primeiro? |
+| Escopo | O que é protótipo navegável e o que é apenas intenção de roadmap? |

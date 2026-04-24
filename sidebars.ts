@@ -17,6 +17,15 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'category',
+          label: 'Visão executiva',
+          collapsed: false,
+          items: [
+            'modulo-carreira/analise-completa',
+            'modulo-carreira/overview',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Começar aqui',
           collapsed: false,
           items: [
@@ -30,7 +39,6 @@ const sidebars: SidebarsConfig = {
           label: 'Fundamentos',
           collapsed: false,
           items: [
-            'modulo-carreira/overview',
             'modulo-carreira/problema-proposta',
             'modulo-carreira/modelos-negocio',
             'modulo-carreira/escopo-metricas',
