@@ -63,6 +63,9 @@ const sidebars: SidebarsConfig = {
                   collapsed: false,
                   items: [
                     'modulo-carreira/colaborador/dashboard/experiencia',
+                    'modulo-carreira/colaborador/dashboard/problema-diagnostico',
+                    'modulo-carreira/colaborador/dashboard/arquitetura-solucao',
+                    'modulo-carreira/colaborador/dashboard/validacao-metricas',
                     'modulo-carreira/colaborador/dashboard/decisoes-validacao',
                     'modulo-carreira/colaborador/dashboard/referencia-prototipo',
                   ],
